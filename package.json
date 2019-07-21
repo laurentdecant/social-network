@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/laurentdecant/social-network#readme",
   "devDependencies": {
+    "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.8.0",
     "eslint": "^6.0.1",
