@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import morgan from "morgan";
 import userRouter from "./routers/userRouter";
 
-const port = 3000;
+const port = 3001;
 const uri = "mongodb://localhost:27017/social-network";
 
 const app = express();

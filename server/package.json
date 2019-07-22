@@ -3,18 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon --exec babel-node --root-mode upward src/app.js"
+    "start": "nodemon --exec babel-node --root-mode upward --extensions \".ts\" src/index.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "mongodb": "^3.2.7",
     "mongoose": "^5.6.4",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
     "@babel/node": "^7.5.5",
+    "@types/express": "^4.17.0",
+    "@types/mongoose": "^5.5.9",
+    "@types/morgan": "^1.7.36",
     "nodemon": "^1.19.1"
   }
 }

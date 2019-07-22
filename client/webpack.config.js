@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
   devtool: "inline-source-map",
   devServer: {
     contentBase: "./dist"
@@ -20,12 +20,12 @@ module.exports = {
     rules: [
       {
         enforce: "pre",
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         loader: "eslint-loader"
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         loader: "babel-loader",
         options: {
@@ -35,6 +35,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [".js", ".jsx"]
+    extensions: [".js", ".ts", ".tsx"]
   }
 };
