@@ -1,16 +1,22 @@
+import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import morgan from "morgan";
+import authRouter from "./routers/authRouter";
 import userRouter from "./routers/userRouter";
 
-const port = 3001;
-const uri = "mongodb://localhost:27017/social-network";
+dotenv.config();
+
+const port = process.env.API_PORT;
+const uri = process.env.DB_URI;
 
 const app = express();
 
 app.use(express.json());
 app.use(morgan("tiny"));
-app.use("/users", userRouter);
+
+app.use("/auth", authRouter);
+app.use("/api/users", userRouter);
 
 app.listen(port, () =>
   mongoose
