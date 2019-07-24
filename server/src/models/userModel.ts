@@ -1,16 +1,13 @@
-import { Document, Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 import bcrypt from "bcrypt";
-
-interface User extends Document {
-  username: string;
-  password: string;
-  comparePassword(password: string): Promise<boolean>;
-}
+import User from "../types/User";
+import * as modelNames from "./modelNames";
 
 var userSchema = new Schema({
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   password: {
     type: String,
@@ -41,4 +38,6 @@ userSchema.methods.comparePassword = function(password) {
   });
 };
 
-export default model<User>("users", userSchema);
+const userModel = model<User>(modelNames.User, userSchema);
+
+export default userModel;
