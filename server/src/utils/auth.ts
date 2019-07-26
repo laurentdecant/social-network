@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import User from "../models/userModel";
 import AuthorizedRequest from "../types/AuthorizedRequest";
 
-const secretKey = process.env.SECRET_KEY;
+const secretKey = process.env.SECRET_KEY as string;
 
 interface Payload {
   userId: string;

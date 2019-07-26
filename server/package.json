@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon --exec babel-node --root-mode upward --extensions \".ts\" src/index.ts"
+    "eslint": "cd .. && npx eslint server/src/**",
+    "babel": "babel-node --root-mode upward --extensions \".ts\"",
+    "start": "nodemon --exec \"npm run eslint && npm run babel\" src/index.ts"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +25,7 @@
     "@types/jsonwebtoken": "^8.3.2",
     "@types/mongoose": "^5.5.9",
     "@types/morgan": "^1.7.36",
+    "@types/node": "^12.6.8",
     "nodemon": "^1.19.1"
   }
 }

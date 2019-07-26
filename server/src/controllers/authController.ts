@@ -31,7 +31,7 @@ async function logIn(req: Request, res: Response, next: NextFunction) {
   try {
     const user = await User.findOne({ username });
     if (!user) {
-      res.status(401).send();
+      return res.status(401).send();
     }
 
     const same = await user.comparePassword(password);

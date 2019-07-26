@@ -7,8 +7,8 @@ import authRouter from "./routers/authRouter";
 import postRouter from "./routers/postRouter";
 import { authorize } from "./utils/auth";
 
-const port = process.env.API_PORT;
-const uri = process.env.DB_URI;
+const port = process.env.API_PORT as string;
+const uri = process.env.DB_URI as string;
 
 const app = express();
 
@@ -22,6 +22,7 @@ app.use("/api/posts", postRouter);
 app.listen(port, () =>
   mongoose
     .connect(uri, {
+      useCreateIndex: true,
       useNewUrlParser: true,
       useFindAndModify: false
     })
