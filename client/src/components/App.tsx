@@ -1,7 +1,13 @@
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./Header";
+import Main from "./Main";
 
-const App = () => {
-  return <h1>Social Network</h1>;
-};
+const App = () => (
+  <Router>
+    <Header />
+    <Main />
+  </Router>
+);
 
 export default App;
