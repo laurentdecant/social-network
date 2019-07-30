@@ -1,24 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "styled-components";
-import rootReducer from "./reducers";
+import configureStore from "./store";
 import GlobalStyle from "./styles/global";
 import theme from "./styles/theme";
 import App from "./components/App";
 
 import "normalize.css";
 
-const store = createStore(rootReducer);
+const store = configureStore();
 
 ReactDOM.render(
   <>
     <GlobalStyle />
     <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <App />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
     </ThemeProvider>
   </>,
   document.getElementById("root")

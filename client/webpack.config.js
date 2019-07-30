@@ -1,16 +1,15 @@
-require("dotenv").config();
-const { DefinePlugin } = require("webpack");
 const path = require("path");
+const { DefinePlugin } = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const { config } = require("dotenv");
 
-const environment = {
-  "process.env": Object.keys(process.env)
-    .filter(key => key.startsWith("_"))
-    .reduce((env, key) => {
-      env[key] = JSON.stringify(process.env[key]);
-      return env;
-    }, {})
+const { parsed } = config();
+const env = {
+  "process.env": Object.keys(parsed).reduce((env, key) => {
+    env[key] = JSON.stringify(parsed[key]);
+    return env;
+  }, {})
 };
 
 module.exports = {
@@ -23,7 +22,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ template: "./src/index.html" }),
-    new DefinePlugin(environment)
+    new DefinePlugin(env)
   ],
   output: {
     filename: "bundle.js",
@@ -36,18 +35,16 @@ module.exports = {
         use: ["style-loader", "css-loader"]
       },
       {
-        enforce: "pre",
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        loader: "eslint-loader"
-      },
-      {
-        test: /\.(ts|tsx)$/,
-        exclude: /node_modules/,
-        loader: "babel-loader",
-        options: {
-          rootMode: "upward"
-        }
+        use: [
+          {
+            loader: "babel-loader",
+            options: { rootMode: "upward" }
+          },
+          "ts-loader",
+          "eslint-loader"
+        ]
       }
     ]
   },

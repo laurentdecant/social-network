@@ -12,7 +12,7 @@ const Header = () => {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const [username, password] = (event.target as unknown) as Array<
+    const [username, password] = (event.target as any) as Array<
       HTMLInputElement
     >;
     dispatchLogin(username.value, password.value);
