@@ -10,13 +10,13 @@ const Header = () => {
     [dispatch]
   );
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const [username, password] = (event.target as any) as Array<
       HTMLInputElement
     >;
     dispatchLogin(username.value, password.value);
-  }
+  };
 
   return (
     <header>

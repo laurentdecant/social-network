@@ -3,7 +3,9 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react",
+    "moduleResolution": "node",
     "strict": true,
-    "strictFunctionTypes": false
+    "strictFunctionTypes": false,
+    "target": "es6"
   }
 }

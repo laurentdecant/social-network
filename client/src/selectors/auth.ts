@@ -1,5 +1,7 @@
 import { State } from "../reducers";
 
-export function isLoggedIn({ auth }: State) {
+const isLoggedIn = ({ auth }: State) => {
   return !!auth.token;
-}
+};
+
+export { isLoggedIn };

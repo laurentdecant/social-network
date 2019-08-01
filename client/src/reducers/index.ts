@@ -6,5 +6,5 @@ export interface State {
 }
 
 export default combineReducers<State>({
-  auth: auth.reducer
+  auth: auth.default
 });

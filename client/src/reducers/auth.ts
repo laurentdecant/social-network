@@ -1,6 +1,6 @@
 import { Action } from "redux";
 
-export interface State {
+interface State {
   token: string;
 }
 
@@ -8,9 +8,11 @@ const initialState: State = {
   token: ""
 };
 
-export const reducer = (state: State = initialState, action: Action) => {
+const reducer = (state: State = initialState, action: Action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
+
+export { reducer as default, State };
