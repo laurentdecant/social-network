@@ -16,7 +16,7 @@ async function signUp(req: Request, res: Response, next: NextFunction) {
 
     user = await User.create({ username, password });
     const token = await createToken({ userId: user._id });
-    res.send(token);
+    res.send({ token });
   } catch (err) {
     next(err);
   }
@@ -40,7 +40,7 @@ async function logIn(req: Request, res: Response, next: NextFunction) {
     }
 
     const token = await createToken({ userId: user._id });
-    res.send(token);
+    res.send({ token });
   } catch (err) {
     return next(err);
   }

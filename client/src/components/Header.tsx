@@ -6,7 +6,7 @@ import { login } from "../actions/auth";
 const Header = () => {
   const dispatch = useDispatch();
   const dispatchLogin = useCallback(
-    (username, password) => dispatch(login(username, password)),
+    (username, password) => dispatch(login({ username, password })),
     [dispatch]
   );
 

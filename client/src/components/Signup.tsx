@@ -5,7 +5,7 @@ import { signup } from "../actions/auth";
 const Signup = () => {
   const dispatch = useDispatch();
   const dispatchSignup = useCallback(
-    (username, password) => dispatch(signup(username, password)),
+    (username, password) => dispatch(signup({ username, password })),
     [dispatch]
   );
 
