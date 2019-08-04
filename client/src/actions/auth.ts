@@ -1,71 +1,35 @@
 import { createAction } from "./utils";
-import { PayloadAction } from "./types";
 
-const ActionTypes = {
-  SignupRequest: "SIGNUP_REQUEST",
-  SignupSuccess: "SIGNUP_SUCCESS",
-  SignupFailure: "SIGNUP_FAILURE",
-  LoginRequest: "LOGIN_REQUEST",
-  LoginSuccess: "LOGIN_SUCCESS",
-  LoginFailure: "LOGIN_FAILURE"
-};
+const SIGNUP_REQUEST = "SIGNUP_REQUEST";
+const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
+const SIGNUP_FAILURE = "SIGNUP_FAILURE";
+const LOGIN_REQUEST = "LOGIN_REQUEST";
+const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+const LOGIN_FAILURE = "LOGIN_FAILURE";
 
-interface SignupRequestPayload {
+const signup = createAction<{
   username: string;
   password: string;
-}
+}>(SIGNUP_REQUEST);
 
-interface SignUpRequestAction
-  extends PayloadAction<
-    typeof ActionTypes.SignupRequest,
-    SignupRequestPayload
-  > {}
-
-const signup = (payload: SignupRequestPayload): SignUpRequestAction =>
-  createAction(ActionTypes.SignupRequest, payload);
-
-interface SignupSuccessPayload {
+const signupSuccess = createAction<{
   token: string;
-}
+}>(SIGNUP_SUCCESS);
 
-interface SignupSuccessAction
-  extends PayloadAction<
-    typeof ActionTypes.SignupRequest,
-    SignupSuccessPayload
-  > {}
+const signupFailure = createAction<Error>(SIGNUP_FAILURE);
 
-const signupSuccess = (payload: SignupSuccessPayload): SignupSuccessAction =>
-  createAction(ActionTypes.SignupSuccess, payload);
-
-const signupFailure = (payload: Error) =>
-  createAction(ActionTypes.SignupFailure, payload);
-
-interface LoginRequestPayload {
+const login = createAction<{
   username: string;
   password: string;
-}
+}>(LOGIN_REQUEST);
 
-interface LoginRequestAction
-  extends PayloadAction<typeof ActionTypes.LoginRequest, LoginRequestPayload> {}
-
-const login = (payload: LoginRequestPayload): LoginRequestAction =>
-  createAction(ActionTypes.LoginRequest, payload);
-
-interface LoginSuccessPayload {
+const loginSuccess = createAction<{
   token: string;
-}
+}>(LOGIN_SUCCESS);
 
-interface LoginSuccessAction
-  extends PayloadAction<typeof ActionTypes.LoginSuccess, LoginSuccessPayload> {}
-
-const loginSuccess = (payload: LoginSuccessPayload): LoginSuccessAction =>
-  createAction(ActionTypes.LoginSuccess, payload);
-
-const loginFailure = (payload: Error) =>
-  createAction(ActionTypes.LoginFailure, payload);
+const loginFailure = createAction<Error>(LOGIN_FAILURE);
 
 export {
-  ActionTypes,
   signup,
   signupSuccess,
   signupFailure,

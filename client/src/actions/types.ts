@@ -1,5 +1,10 @@
-import { Action } from "redux";
-
-export interface PayloadAction<T = any, P = any> extends Action<T> {
-  payload: P;
+export interface Action<TPayload = any> {
+  type: string;
+  payload: TPayload;
 }
+
+export type ActionCreator<TPayload = any> = ((
+  props: TPayload
+) => Action<TPayload>) & {
+  getType: () => string;
+};
