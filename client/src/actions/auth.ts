@@ -7,27 +7,27 @@ const LOGIN_REQUEST = "LOGIN_REQUEST";
 const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 const LOGIN_FAILURE = "LOGIN_FAILURE";
 
-const signup = createAction<{
-  username: string;
-  password: string;
-}>(SIGNUP_REQUEST);
+const signup = createAction(
+  SIGNUP_REQUEST,
+  (username: string, password: string) => ({ username, password })
+);
 
-const signupSuccess = createAction<{
-  token: string;
-}>(SIGNUP_SUCCESS);
+const signupSuccess = createAction(SIGNUP_SUCCESS, (token: string) => ({
+  token
+}));
 
-const signupFailure = createAction<Error>(SIGNUP_FAILURE);
+const signupFailure = createAction(SIGNUP_FAILURE, (error: Error) => error);
 
-const login = createAction<{
-  username: string;
-  password: string;
-}>(LOGIN_REQUEST);
+const login = createAction(
+  LOGIN_REQUEST,
+  (username: string, password: string) => ({ username, password })
+);
 
-const loginSuccess = createAction<{
-  token: string;
-}>(LOGIN_SUCCESS);
+const loginSuccess = createAction(LOGIN_SUCCESS, (token: string) => ({
+  token
+}));
 
-const loginFailure = createAction<Error>(LOGIN_FAILURE);
+const loginFailure = createAction(LOGIN_FAILURE, (error: Error) => error);
 
 export {
   signup,

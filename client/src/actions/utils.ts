@@ -1,15 +1,20 @@
-import { Action, ActionCreator } from "./types";
+import { Selector, Action, ActionCreator } from "./types";
 
-export function createAction<TPayload>(type: string) {
-  const creator = (payload: TPayload) => ({
+export function createAction<TPayloadSelector extends Selector>(
+  type: string,
+  payloadSelector: TPayloadSelector
+): ActionCreator<TPayloadSelector> {
+  const actionCreator = (
+    ...params: Parameters<TPayloadSelector>
+  ): Action<ReturnType<TPayloadSelector>> => ({
     type,
-    payload
+    payload: payloadSelector(...params)
   });
-  creator.getType = () => type;
-  return creator;
+  actionCreator.getType = () => type;
+  return actionCreator;
 }
 
-export function isActionType<TPayload>(actionCreator: ActionCreator<TPayload>) {
+export function isActionType(actionCreator: ActionCreator) {
   return function(action: Action) {
     return actionCreator.getType() === action.type;
   };

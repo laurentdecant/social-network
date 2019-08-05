@@ -1,11 +1,11 @@
 import React, { useCallback, FormEvent } from "react";
 import { useDispatch } from "react-redux";
-import { signup } from "../actions/auth";
+import * as authActions from "../actions/auth";
 
 const Signup = () => {
   const dispatch = useDispatch();
   const dispatchSignup = useCallback(
-    (username, password) => dispatch(signup({ username, password })),
+    (username, password) => dispatch(authActions.signup(username, password)),
     [dispatch]
   );
 
