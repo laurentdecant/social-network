@@ -7,7 +7,11 @@ import Button from "./Button";
 import Input from "./Input";
 
 const StyledInput = styled(Input)`
-  margin-right: ${({ theme }) => theme.space.sm};
+  margin-right: ${({ theme }) => theme.space.medium};
+`;
+
+const SubmitButton = styled(Button)`
+  background: ${({ theme }) => theme.color.gray};
 `;
 
 const Login = () => {
@@ -30,7 +34,7 @@ const Login = () => {
     <form onSubmit={handleSubmit}>
       <StyledInput type="text" placeholder="Username" />
       <StyledInput type="password" placeholder="Password" />
-      <Button type="submit">Log In</Button>
+      <SubmitButton type="submit">Log In</SubmitButton>
     </form>
   ) : (
     <></>

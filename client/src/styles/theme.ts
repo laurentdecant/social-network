@@ -2,23 +2,40 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
+    background: {
+      default: string;
+      hover: string;
+      active: string;
+    };
     color: {
       primary: string;
+      gray: string;
+      success: string;
+      warning: string;
+      error: string;
     };
     fontSize: {
-      xs: string;
-      sm: string;
-      md: string;
-      lg: string;
-      xl: string;
+      extraSmall: string;
+      small: string;
+      medium: string;
+      large: string;
+      extraLarge: string;
+    };
+    fontWeight: {
+      light: number;
+      normal: number;
+      bold: number;
+    };
+    foreground: {
+      default: string;
     };
     radius: string;
     space: {
-      xs: string;
-      sm: string;
-      md: string;
-      lg: string;
-      xl: string;
+      extraSmall: string;
+      small: string;
+      medium: string;
+      large: string;
+      extraLarge: string;
     };
     text: {
       primary: string;
@@ -27,23 +44,40 @@ declare module "styled-components" {
 }
 
 export default {
+  background: {
+    default: "white",
+    hover: "rgba(0, 0, 0, 0.1)",
+    active: "rgba(0, 0, 0, 0.2)"
+  },
   color: {
-    primary: "#1877f2"
+    primary: "#1877f2",
+    gray: "#eeeeee",
+    success: "",
+    warning: "",
+    error: ""
   },
   fontSize: {
-    xs: "4px",
-    sm: "8x",
-    md: "16px",
-    lg: "32px",
-    xl: "64px"
+    extraSmall: "4px",
+    small: "8x",
+    medium: "16px",
+    large: "32px",
+    extraLarge: "64px"
+  },
+  fontWeight: {
+    light: 300,
+    normal: 400,
+    bold: 500
+  },
+  foreground: {
+    default: "black"
   },
   radius: "4px",
   space: {
-    xs: "4px",
-    sm: "8px",
-    md: "16px",
-    lg: "32px",
-    xl: "64px"
+    extraSmall: "4px",
+    small: "8px",
+    medium: "16px",
+    large: "32px",
+    extraLarge: "64px"
   },
   text: {
     primary: "white"
