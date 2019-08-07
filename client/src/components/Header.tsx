@@ -1,41 +1,29 @@
-import React, { useCallback, FormEvent } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import * as authActions from "../actions/auth";
-import * as authSelectors from "../selectors/auth";
+import styled from "styled-components";
+import Login from "./Login";
+
+const StyledHeader = styled.header`
+  align-items: center;
+  background: ${({ theme }) => theme.color.primary};
+  color: ${({ theme }) => theme.text.primary};
+  display: flex;
+  height: ${({ theme }) => theme.space.xl};
+  justify-content: space-between;
+  padding: 0 ${({ theme }) => theme.space.lg};
+`;
+
+const Home = styled(Link)`
+  font-size: ${({ theme }) => theme.fontSize.lg};
+`;
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const dispatchLogin = useCallback(
-    (username, password) => dispatch(authActions.login(username, password)),
-    [dispatch]
-  );
-  const isLoggedIn = useSelector(authSelectors.isLoggedIn);
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const [username, password] = (event.target as any) as Array<
-      HTMLInputElement
-    >;
-    dispatchLogin(username.value, password.value);
-  };
-
   return (
-    <header>
-      <span>Social Network</span>
+    <StyledHeader>
+      <Home to="/">Social Network</Home>
 
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-
-      {!isLoggedIn && (
-        <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="Username" />
-          <input type="password" placeholder="Password" />
-          <button type="submit">Log In</button>
-        </form>
-      )}
-    </header>
+      <Login />
+    </StyledHeader>
   );
 };
 

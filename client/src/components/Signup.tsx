@@ -1,6 +1,8 @@
 import React, { useCallback, FormEvent } from "react";
 import { useDispatch } from "react-redux";
 import * as authActions from "../actions/auth";
+import Button from "./Button";
+import Input from "./Input";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -21,10 +23,10 @@ const Signup = () => {
     <>
       <form onSubmit={handleSubmit}>
         <label>Username</label>
-        <input type="text" />
+        <Input type="text" />
         <label>Password</label>
-        <input type="password" />
-        <button type="submit">Sign Up</button>
+        <Input type="password" />
+        <Button type="submit">Sign Up</Button>
       </form>
     </>
   );
