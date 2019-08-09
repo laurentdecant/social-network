@@ -8,6 +8,7 @@ declare module "styled-components" {
       active: string;
     };
     color: {
+      default: string;
       primary: string;
       gray: string;
       success: string;
@@ -32,9 +33,13 @@ declare module "styled-components" {
     radius: string;
     space: {
       extraSmall: string;
+      extraSmallSmall: string;
       small: string;
+      smallMedium: string;
       medium: string;
+      mediumLarge: string;
       large: string;
+      largeExtraLarge: string;
       extraLarge: string;
     };
     text: {
@@ -50,6 +55,7 @@ export default {
     active: "rgba(0, 0, 0, 0.2)"
   },
   color: {
+    default: "black",
     primary: "#1877f2",
     gray: "#eeeeee",
     success: "",
@@ -74,9 +80,13 @@ export default {
   radius: "4px",
   space: {
     extraSmall: "4px",
+    extraSmallSmall: "6px",
     small: "8px",
+    smallMedium: "12px",
     medium: "16px",
+    mediumLarge: "24px",
     large: "32px",
+    largeExtraLarge: "48px",
     extraLarge: "64px"
   },
   text: {

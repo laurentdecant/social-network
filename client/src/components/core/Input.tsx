@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { Sized, height } from "./utils";
 
-const Input = styled.input`
+const Input = styled.input<Sized>`
   border: none;
   border-radius: ${({ theme }) => theme.radius};
-  height: ${({ theme }) => theme.space.large};
+  height: ${height};
   padding: 0 ${({ theme }) => theme.space.small};
 
   &:focus {

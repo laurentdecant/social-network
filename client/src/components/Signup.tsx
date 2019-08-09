@@ -1,10 +1,9 @@
-import React, { useCallback, FormEvent } from "react";
-import { useDispatch } from "react-redux";
+import React, { FormEvent } from "react";
 import styled from "styled-components";
+import { useAction } from "../hooks";
 import * as authActions from "../actions/auth";
-import Button from "./Button";
-import Heading from "./Heading";
-import Input from "./Input";
+import Button from "./core/Button";
+import Input from "./core/Input";
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.color.gray};
@@ -14,6 +13,13 @@ const Wrapper = styled.div`
   padding: ${({ theme }) => theme.space.large};
   border-radius: ${({ theme }) => theme.radius};
   width: 25%;
+`;
+
+const Heading = styled.h1`
+  font-size: ${({ theme }) => theme.fontSize.large};
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  margin: 0 0 ${({ theme }) => theme.space.large} 0;
+  text-align: center;
 `;
 
 const Form = styled.form`
@@ -36,42 +42,41 @@ const Label = styled.label`
   padding-left: ${({ theme }) => theme.space.small};
 `;
 
-const SubmitButton = styled(Button)`
-  background: ${({ theme }) => theme.color.primary};
-  color: ${({ theme }) => theme.background.default};
-`;
-
 const Signup = () => {
-  const dispatch = useDispatch();
-  const dispatchSignup = useCallback(
-    (username, password) => dispatch(authActions.signup(username, password)),
-    [dispatch]
-  );
+  const signup = useAction(authActions.signup);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const [username, password] = (event.target as any) as Array<
       HTMLInputElement
     >;
-    dispatchSignup(username.value, password.value);
+    signup(username.value, password.value);
   };
 
   return (
     <Wrapper>
-      <Heading>Sign Up</Heading>
+      <Heading>Sign up</Heading>
 
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label>Username</Label>
-          <Input type="text" />
+          {
+            //@ts-ignore
+            <Input type="text" size="large" />
+          }
         </FormGroup>
 
         <FormGroup>
           <Label>Password</Label>
-          <Input type="password" />
+          {
+            //@ts-ignore}
+            <Input type="password" size="large" />
+          }
         </FormGroup>
 
-        <SubmitButton type="submit">Sign Up</SubmitButton>
+        <Button type="submit" size="large" color="primary">
+          Sign up
+        </Button>
       </Form>
     </Wrapper>
   );
