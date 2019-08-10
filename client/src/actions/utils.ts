@@ -5,10 +5,10 @@ export function createAction<TPayloadSelector extends Selector>(
   payloadSelector: TPayloadSelector
 ): ActionCreator<TPayloadSelector> {
   const actionCreator = (
-    ...params: Parameters<TPayloadSelector>
+    ...args: Parameters<TPayloadSelector>
   ): Action<ReturnType<TPayloadSelector>> => ({
     type,
-    payload: payloadSelector(...params)
+    payload: payloadSelector(...args)
   });
   actionCreator.getType = () => type;
   return actionCreator;

@@ -1,6 +1,6 @@
 import React, { FormEvent } from "react";
 import styled from "styled-components";
-import { useAction } from "../hooks";
+import { useActions } from "../hooks";
 import * as authActions from "../actions/auth";
 import Button from "./core/Button";
 import Input from "./core/Input";
@@ -43,7 +43,7 @@ const Label = styled.label`
 `;
 
 const Signup = () => {
-  const signup = useAction(authActions.signup);
+  const signup = useActions(authActions.signup);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -8,8 +8,6 @@ export interface Action<TPayload = any> {
 }
 
 export interface ActionCreator<TPayloadSelector extends Selector = any> {
-  (...params: Parameters<TPayloadSelector>): Action<
-    ReturnType<TPayloadSelector>
-  >;
+  (...args: Parameters<TPayloadSelector>): Action<ReturnType<TPayloadSelector>>;
   getType: () => string;
 }

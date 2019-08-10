@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 const StyledMain = styled.main`
   flex-grow: 1;
-  padding: ${({ theme }) => theme.space.extraLarge} 0;
+  padding: ${({ theme }) => theme.space.large} 0;
 `;
 
 const Main = () => (

@@ -1,7 +1,7 @@
 import React, { FormEvent } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { useAction } from "../hooks";
+import { useActions } from "../hooks";
 import * as authActions from "../actions/auth";
 import * as authSelectors from "../selectors/auth";
 import Button from "./core/Button";
@@ -12,7 +12,7 @@ const StyledInput = styled(Input)`
 `;
 
 const Login = () => {
-  const login = useAction(authActions.login);
+  const login = useActions(authActions.login);
   const isLoggedIn = useSelector(authSelectors.isLoggedIn);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
