@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Sized, height } from "./utils";
+import { Dimensionable, height } from "./utils";
 
-const Input = styled.input<Sized>`
+const Input = styled.input<Dimensionable>`
   border: none;
   border-radius: ${({ theme }) => theme.radius};
   height: ${height};

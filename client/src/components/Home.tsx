@@ -29,11 +29,8 @@ const Home = () => {
   return (
     <Wrapper>
       <Form onSubmit={handleSubmit}>
-        {
-          //@ts-ignore
-          <StyledInput size="large" />
-        }
-        <Button size="large" color="primary">
+        <StyledInput dimension="large" />
+        <Button dimension="large" color="primary">
           Post
         </Button>
       </Form>

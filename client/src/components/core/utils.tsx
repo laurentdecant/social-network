@@ -4,15 +4,15 @@ const SMALL = "small";
 const MEDIUM = "medium";
 const LARGE = "large";
 
-interface Sized {
-  size?: typeof SMALL | typeof MEDIUM | typeof LARGE;
+interface Dimensionable {
+  dimension?: typeof SMALL | typeof MEDIUM | typeof LARGE;
 }
 
 function height({
-  size = MEDIUM,
+  dimension = MEDIUM,
   theme
-}: ThemedStyledProps<Sized, DefaultTheme>) {
-  switch (size) {
+}: ThemedStyledProps<Dimensionable, DefaultTheme>) {
+  switch (dimension) {
     case SMALL:
       return theme.space.mediumLarge;
     case MEDIUM:
@@ -22,4 +22,4 @@ function height({
   }
 }
 
-export { Sized, height };
+export { Dimensionable, height };

@@ -60,21 +60,15 @@ const Signup = () => {
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label>Username</Label>
-          {
-            //@ts-ignore
-            <Input type="text" size="large" />
-          }
+          <Input type="text" dimension="large" />
         </FormGroup>
 
         <FormGroup>
           <Label>Password</Label>
-          {
-            //@ts-ignore}
-            <Input type="password" size="large" />
-          }
+          <Input type="password" dimension="large" />
         </FormGroup>
 
-        <Button type="submit" size="large" color="primary">
+        <Button type="submit" dimension="large" color="primary">
           Sign up
         </Button>
       </Form>

@@ -1,21 +1,17 @@
-import styled, {
-  ThemedStyledProps,
-  DefaultTheme,
-  ThemeContext
-} from "styled-components";
-import { Sized, height } from "./utils";
+import styled, { ThemedStyledProps, DefaultTheme } from "styled-components";
+import { Dimensionable, height } from "./utils";
 
 const DEFAULT = "default";
 const PRIMARY = "primary";
 
-interface Colored {
+interface Colorable {
   color?: typeof DEFAULT | typeof PRIMARY;
 }
 
 function background({
   color = DEFAULT,
   theme
-}: ThemedStyledProps<Colored, DefaultTheme>) {
+}: ThemedStyledProps<Colorable, DefaultTheme>) {
   switch (color) {
     case DEFAULT:
       return theme.color.gray;
@@ -27,7 +23,7 @@ function background({
 function color({
   color = DEFAULT,
   theme
-}: ThemedStyledProps<Colored, DefaultTheme>) {
+}: ThemedStyledProps<Colorable, DefaultTheme>) {
   switch (color) {
     case DEFAULT:
       return theme.color.default;
@@ -36,7 +32,7 @@ function color({
   }
 }
 
-const Button = styled.button<Sized & Colored>`
+const Button = styled.button<Dimensionable & Colorable>`
   background: ${background}
   border: none;
   border-radius: ${({ theme }) => theme.radius};
