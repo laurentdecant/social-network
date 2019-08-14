@@ -16,6 +16,10 @@ function fetchJson(method: string, path: string, body: any) {
   });
 }
 
+function getJson(path: string) {
+  // return fetchJson("GET", path);
+}
+
 function postJson(path: string, data: any) {
   return fetchJson("POST", path, data);
 }

@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Login from "./Login";
+import Icon from "./core/Icon";
+import { useSelector } from "react-redux";
+import * as authSelectors from "../selectors/auth";
 
 const StyledHeader = styled.header`
   align-items: center;
@@ -14,14 +17,26 @@ const StyledHeader = styled.header`
 `;
 
 const Home = styled(Link)`
+  align-items: center;
+  display: flex;
   font-size: ${({ theme }) => theme.fontSize.large};
+
+  ${Icon} {
+    margin-right: ${({ theme }) => theme.space.small};
+  }
 `;
 
 const Header = () => {
+  const isLoggedIn = useSelector(authSelectors.isLoggedIn);
+
   return (
     <StyledHeader>
-      <Home to="/">Social Network</Home>
-      <Login />
+      <Home to="/">
+        <Icon type="group" />
+        Social Network
+      </Home>
+
+      {isLoggedIn ? <Icon type="account_circle" /> : <Login />}
     </StyledHeader>
   );
 };
