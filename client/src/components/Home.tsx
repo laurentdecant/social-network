@@ -1,5 +1,7 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useEffect } from "react";
 import styled from "styled-components";
+import { useActions } from "../hooks";
+import * as postActions from "../actions/post";
 import Button from "./core/Button";
 import Input from "./core/Input";
 
@@ -22,6 +24,9 @@ const StyledInput = styled(Input)`
 `;
 
 const Home = () => {
+  const getPosts = useActions(postActions.getPosts);
+  getPosts();
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };

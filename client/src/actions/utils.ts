@@ -8,7 +8,7 @@ export function createAction<TPayloadSelector extends Selector>(
     ...args: Parameters<TPayloadSelector>
   ): Action<ReturnType<TPayloadSelector>> => ({
     type,
-    payload: payloadSelector && payloadSelector(...args)
+    payload: payloadSelector ? payloadSelector(...args) : args[0]
   });
   actionCreator.getType = () => type;
   return actionCreator;

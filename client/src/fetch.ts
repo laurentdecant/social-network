@@ -1,12 +1,28 @@
 const serverUrl = process.env.SERVER_URL;
 
-function fetchJson(method: string, path: string, body: any) {
-  return fetch(`${serverUrl}${path}`, {
-    method: method,
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(body)
+interface Params {
+  method: string;
+  headers: any;
+  query?: any;
+  body?: any;
+}
+
+function fetchJson(
+  path: string,
+  { method, headers, query = {}, body = {} }: Params
+) {
+  const queryString = Object.keys(query)
+    .map(key => `${key}=${encodeURIComponent(query[key])}`)
+    .join("&");
+  return fetch(`${serverUrl}/${path}${queryString && `?${queryString}`}`, {
+    ...{
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        ...headers
+      },
+      body: method === "POST" ? JSON.stringify(body) : undefined
+    }
   }).then(response => {
     if (!response.ok) {
       throw new Error(response.statusText);
@@ -16,12 +32,24 @@ function fetchJson(method: string, path: string, body: any) {
   });
 }
 
-function getJson(path: string) {
-  // return fetchJson("GET", path);
+function getJson(path: string, query?: any) {
+  return function(headers: any = {}) {
+    return fetchJson(path, {
+      method: "GET",
+      headers,
+      query
+    });
+  };
 }
 
-function postJson(path: string, data: any) {
-  return fetchJson("POST", path, data);
+function postJson(path: string, body: any) {
+  return function(headers: any = {}) {
+    return fetchJson(path, {
+      method: "POST",
+      headers,
+      body
+    });
+  };
 }
 
-export { postJson };
+export { getJson, postJson };

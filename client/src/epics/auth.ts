@@ -6,14 +6,14 @@ const signupEpic = createEpic(
   actions.signup,
   actions.signupSuccess,
   actions.signupFailure,
-  action => postJson("/auth/signup", action.payload)
+  payload => postJson("auth/signup", payload)
 );
 
 const loginEpic = createEpic(
   actions.login,
   actions.loginSuccess,
   actions.loginFailure,
-  action => postJson("/auth/login", action.payload)
+  payload => postJson("auth/login", payload)
 );
 
 export { signupEpic, loginEpic };
