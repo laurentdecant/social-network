@@ -57,7 +57,7 @@ export default {
   color: {
     default: "black",
     primary: "#1877f2",
-    gray: "#eeeeee",
+    gray: "#e0e0e0",
     success: "",
     warning: "",
     error: ""
@@ -70,9 +70,9 @@ export default {
     extraLarge: "64px"
   },
   fontWeight: {
-    light: 300,
+    light: 200,
     normal: 400,
-    bold: 500
+    bold: 600
   },
   foreground: {
     default: "black"

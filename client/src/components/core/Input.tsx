@@ -2,13 +2,14 @@ import styled from "styled-components";
 import { Dimensionable, height } from "./utils";
 
 const Input = styled.input<Dimensionable>`
-  border: none;
+  background: ${({ theme }) => theme.background.default};
+  border: 0;
   border-radius: ${({ theme }) => theme.radius};
   height: ${height};
   padding: 0 ${({ theme }) => theme.space.small};
 
   &:focus {
-    outline: none;
+    outline: 0;
   }
 `;
 

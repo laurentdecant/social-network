@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-const ACCOUNT_CIRCLE = "account_circle";
 const GROUP = "group";
+const PERSON = "person";
+const SEND = "send";
 
 interface Props {
-  type: typeof GROUP | typeof ACCOUNT_CIRCLE;
+  type: typeof GROUP | typeof PERSON | typeof SEND;
 }
 
 const Icon = styled.i.attrs(({ type }: Props) => ({

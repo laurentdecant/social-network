@@ -1,4 +1,4 @@
-import { getJson } from "../fetch";
+import { getJson, postJson } from "../fetch";
 import * as actions from "../actions/post";
 import { createEpic } from "./utils";
 
@@ -9,4 +9,11 @@ const getPostsEpic = createEpic(
   () => getJson("api/posts")
 );
 
-export { getPostsEpic };
+const postPostEpic = createEpic(
+  actions.postPost,
+  actions.postPostSuccess,
+  actions.postPostFailure,
+  payload => postJson("api/posts", payload)
+);
+
+export { getPostsEpic, postPostEpic };

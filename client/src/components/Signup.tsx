@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 
 const Heading = styled.h1`
   font-size: ${({ theme }) => theme.fontSize.large};
-  font-weight: ${({ theme }) => theme.fontWeight.light};
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   margin: 0 0 ${({ theme }) => theme.space.large} 0;
   text-align: center;
 `;

@@ -11,18 +11,24 @@ const signup = createAction(
   SIGNUP_REQUEST,
   (username: string, password: string) => ({ username, password })
 );
-const signupSuccess = createAction(SIGNUP_SUCCESS, (token: string) => ({
-  token
-}));
+const signupSuccess = createAction(
+  SIGNUP_SUCCESS,
+  ({ token }: { token: string }) => ({
+    token
+  })
+);
 const signupFailure = createAction(SIGNUP_FAILURE, (error: Error) => error);
 
 const login = createAction(
   LOGIN_REQUEST,
   (username: string, password: string) => ({ username, password })
 );
-const loginSuccess = createAction(LOGIN_SUCCESS, (token: string) => ({
-  token
-}));
+const loginSuccess = createAction(
+  LOGIN_SUCCESS,
+  ({ token }: { token: string }) => ({
+    token
+  })
+);
 const loginFailure = createAction(LOGIN_FAILURE, (error: Error) => error);
 
 export {

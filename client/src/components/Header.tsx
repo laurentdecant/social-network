@@ -36,7 +36,7 @@ const Header = () => {
         Social Network
       </Home>
 
-      {isLoggedIn ? <Icon type="account_circle" /> : <Login />}
+      {isLoggedIn ? <Icon type="person" /> : <Login />}
     </StyledHeader>
   );
 };

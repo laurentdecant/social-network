@@ -1,14 +1,13 @@
-import Post from "../../../server/src/types/Post";
 import { createReducer } from "./utils";
-import { getPostsSuccess } from "../actions/post";
+import Post from "../types/Post";
+import { getPostsSuccess, postPostSuccess } from "../actions/post";
 
 type State = Post[];
 
 const initialState: State = [];
 
-const reducer = createReducer(initialState).addHandler(
-  getPostsSuccess,
-  (state, { payload }) => payload
-);
+const reducer = createReducer(initialState)
+  .addHandler(getPostsSuccess, (state, { payload }) => payload)
+  .addHandler(postPostSuccess, (state, { payload }) => [...state, payload]);
 
 export { reducer as default, State };

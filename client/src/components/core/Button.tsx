@@ -33,12 +33,12 @@ function color({
 }
 
 const Button = styled.button<Dimensionable & Colorable>`
-  background: ${background}
-  border: none;
+  background: ${background};
+  border: 0;
   border-radius: ${({ theme }) => theme.radius};
   color: ${color}
   height: ${height};
-  outline: none;
+  outline: 0;
   padding: 0 ${({ theme }) => theme.space.medium};
   position: relative;
 

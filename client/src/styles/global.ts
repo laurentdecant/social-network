@@ -11,6 +11,15 @@ export default createGlobalStyle`
     font-family: 'Roboto', sans-serif;
   }
 
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
   a,
   a:hover,
   a:active,

@@ -10,7 +10,7 @@ export function useActions<TAction extends ActionCreator>(
 export function useActions<TAction extends ActionCreator>(
   actions: TAction[],
   deps?: any[]
-): TAction;
+): TAction[];
 export function useActions<TAction extends ActionCreator>(
   actions: TAction[] | TAction,
   deps?: any[]
