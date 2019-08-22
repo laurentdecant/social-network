@@ -8,7 +8,7 @@ async function findAll(
   next: NextFunction
 ) {
   try {
-    const posts = await Post.find();
+    const posts = await Post.find().populate("author");
     res.send(posts);
   } catch (err) {
     next(err);
@@ -21,7 +21,7 @@ async function findOne(
   next: NextFunction
 ) {
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id).populate("author");
     res.send(post);
   } catch (err) {
     next(err);
@@ -36,8 +36,9 @@ async function create(
   try {
     const post = await Post.create({
       ...req.body,
-      userId: req.user.id
+      author: req.user.id
     });
+    await post.populate("author").execPopulate();
     res.send(post);
   } catch (err) {
     next(err);
@@ -54,10 +55,10 @@ async function update(
       req.params.id,
       {
         ...req.body,
-        userId: req.user.id
+        author: req.user.id
       },
       { new: true }
-    );
+    ).populate("author");
     res.send(post);
   } catch (err) {
     next(err);
@@ -70,11 +71,11 @@ async function _delete(
   next: NextFunction
 ) {
   try {
-    const post = await Post.findByIdAndDelete(req.params.id);
+    const post = await Post.findByIdAndDelete(req.params.id).populate("author");
     res.send(post);
   } catch (err) {
     next(err);
   }
 }
 
-export { findAll, findOne, create, update, _delete as delete };
+export default { findAll, findOne, create, update, delete: _delete };

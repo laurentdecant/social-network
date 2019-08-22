@@ -29,7 +29,7 @@ async function logIn(req: Request, res: Response, next: NextFunction) {
   }
 
   try {
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username }).select("+password");
     if (!user) {
       return res.status(401).send();
     }

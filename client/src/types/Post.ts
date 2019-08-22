@@ -1,5 +1,7 @@
+import User from "./User";
+
 export default interface Post {
   _id: string;
   message: string;
-  userId: any;
+  author: User;
 }

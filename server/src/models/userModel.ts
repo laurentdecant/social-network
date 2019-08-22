@@ -3,17 +3,21 @@ import bcrypt from "bcrypt";
 import User from "../types/User";
 import * as modelNames from "./modelNames";
 
-var userSchema = new Schema({
-  username: {
-    type: String,
-    required: true,
-    unique: true
+var userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+      unique: true
+    },
+    password: {
+      type: String,
+      required: true,
+      select: false
+    }
   },
-  password: {
-    type: String,
-    required: true
-  }
-});
+  { versionKey: false }
+);
 
 userSchema.pre<User>("save", function(next) {
   bcrypt.hash(this.password, 8, (err, encrypted) => {
