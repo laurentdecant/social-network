@@ -11,22 +11,33 @@ const Item = styled.li`
   background: ${({ theme }) => theme.color.gray};
   border-radius: ${({ theme }) => theme.radius};
   display: flex;
-  padding: ${({ theme }) => theme.space.medium};
+  padding: ${({ theme }) => theme.size.medium};
 
   &:not(:last-child) {
-    margin-bottom: ${({ theme }) => theme.space.medium};
+    margin-bottom: ${({ theme }) => theme.size.medium};
   }
 `;
 
 const StyledIcon = styled(Icon)`
-  margin-right: ${({ theme }) => theme.space.medium};
+  font-size: ${({ theme }) => theme.size.extraLarge};
+  margin-right: ${({ theme }) => theme.size.medium};
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
+const Author = styled.div`
+  margin-bottom: ${({ theme }) => theme.size.small};
 `;
 
 const Message = styled.div`
   background: white;
-  border-radius: ${({ theme }) => theme.space.large};
+  border-radius: ${({ theme }) => theme.size.large};
   flex-grow: 1;
-  line-height: ${({ theme }) => theme.space.large};
+  line-height: ${({ theme }) => theme.size.large};
   padding: 0 16px;
 `;
 
@@ -39,7 +50,10 @@ const Home = () => {
         posts.map(post => (
           <Item key={post._id}>
             <StyledIcon type="person" />
-            <Message>{post.message}</Message>
+            <Column>
+              <Author>{post.author.username}</Author>
+              <Message>{post.message}</Message>
+            </Column>
           </Item>
         ))}
     </List>

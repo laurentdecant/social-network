@@ -33,6 +33,7 @@ function fetchJson(
 }
 
 function getJson(path: string, query?: any) {
+  console.log("GET_JSON", path);
   return function(headers: any = {}) {
     return fetchJson(path, {
       method: "GET",

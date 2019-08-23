@@ -6,7 +6,7 @@ const Input = styled.input<Dimensionable>`
   border: 0;
   border-radius: ${({ theme }) => theme.radius};
   height: ${height};
-  padding: 0 ${({ theme }) => theme.space.small};
+  padding: 0 ${({ theme }) => theme.size.small};
 
   &:focus {
     outline: 0;

@@ -14,11 +14,11 @@ function height({
 }: ThemedStyledProps<Dimensionable, DefaultTheme>) {
   switch (dimension) {
     case SMALL:
-      return theme.space.mediumLarge;
+      return theme.size.mediumLarge;
     case MEDIUM:
-      return theme.space.large;
+      return theme.size.large;
     case LARGE:
-      return theme.space.largeExtraLarge;
+      return theme.size.largeExtraLarge;
   }
 }
 

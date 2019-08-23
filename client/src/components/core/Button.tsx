@@ -39,7 +39,7 @@ const Button = styled.button<Dimensionable & Colorable>`
   color: ${color}
   height: ${height};
   outline: 0;
-  padding: 0 ${({ theme }) => theme.space.medium};
+  padding: 0 ${({ theme }) => theme.size.medium};
   position: relative;
 
   &:hover {

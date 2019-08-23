@@ -1,19 +1,22 @@
 import { postJson } from "../fetch";
-import * as actions from "../actions/auth";
+import * as authActions from "../actions/auth";
+import * as meActions from "../actions/me";
 import { createEpic } from "./utils";
 
 const signupEpic = createEpic(
-  actions.signup,
-  actions.signupSuccess,
-  actions.signupFailure,
-  payload => postJson("auth/signup", payload)
+  authActions.signup,
+  authActions.signupSuccess,
+  authActions.signupFailure,
+  payload => postJson("auth/signup", payload),
+  meActions.getMe
 );
 
 const loginEpic = createEpic(
-  actions.login,
-  actions.loginSuccess,
-  actions.loginFailure,
-  payload => postJson("auth/login", payload)
+  authActions.login,
+  authActions.loginSuccess,
+  authActions.loginFailure,
+  payload => postJson("auth/login", payload),
+  meActions.getMe
 );
 
 export { signupEpic, loginEpic };

@@ -9,8 +9,8 @@ const Form = styled.form`
   background: ${({ theme }) => theme.color.gray};
   border-radius: ${({ theme }) => theme.radius};
   display: flex;
-  margin-bottom: ${({ theme }) => theme.space.medium};
-  padding: ${({ theme }) => theme.space.medium};
+  margin-bottom: ${({ theme }) => theme.size.medium};
+  padding: ${({ theme }) => theme.size.medium};
 `;
 
 const StyledInput = styled(Input)`

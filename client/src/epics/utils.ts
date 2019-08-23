@@ -12,20 +12,22 @@ export const createEpic = <TPayloadSelector extends Selector>(
   failure: ActionCreator,
   fetch: (
     payload: ReturnType<TPayloadSelector>
-  ) => (headers: any) => Promise<any>
+  ) => (headers: any) => Promise<any>,
+  next?: ActionCreator
 ) => (
   action$: Observable<Action>,
   state$: StateObservable<State>
 ): Observable<Action> =>
   action$.pipe(
     filter(isActionType(request)),
-    mergeMap((action: ReturnType<ActionCreator<TPayloadSelector>>) =>
+    mergeMap((action: Action) =>
       from(
         fetch(action.payload)({
           Authorization: `Bearer ${getToken(state$.value)}`
         })
       ).pipe(
         map(success),
+        mergeMap(action => (next ? of(action, next()) : of(action))),
         catchError((err: Error) => of(failure(err)))
       )
     )

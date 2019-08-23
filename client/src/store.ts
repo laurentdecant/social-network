@@ -1,6 +1,7 @@
 import { compose, createStore, applyMiddleware } from "redux";
 import { createEpicMiddleware } from "redux-observable";
 import { Action } from "./actions/types";
+import { login } from "./actions/auth";
 import rootEpic from "./epics";
 import rootReducer, { State } from "./reducers";
 
@@ -15,6 +16,10 @@ export default function configureStore() {
   );
 
   epicMiddleware.run(rootEpic);
+
+  const { USERNAME, PASSWORD } = process.env;
+  //@ts-ignore
+  store.dispatch(login(USERNAME, PASSWORD));
 
   return store;
 }

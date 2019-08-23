@@ -3,6 +3,6 @@ import meController from "../controllers/meController";
 
 const router = Router();
 
-router.get("/me", meController.findOne);
+router.get("", meController.findOne);
 
 export default router;

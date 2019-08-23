@@ -8,7 +8,7 @@ import Button from "./core/Button";
 import Input from "./core/Input";
 
 const StyledInput = styled(Input)`
-  margin-right: ${({ theme }) => theme.space.medium};
+  margin-right: ${({ theme }) => theme.size.medium};
 `;
 
 const Login = () => {

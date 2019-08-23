@@ -1,6 +1,11 @@
 import { createGlobalStyle } from "styled-components";
+import theme from "./theme";
 
 export default createGlobalStyle`
+  * {
+    font-size: ${theme.size.medium};
+  }
+
   html,
   body,
   #root {

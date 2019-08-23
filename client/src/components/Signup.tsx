@@ -10,15 +10,15 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-  padding: ${({ theme }) => theme.space.large};
+  padding: ${({ theme }) => theme.size.large};
   border-radius: ${({ theme }) => theme.radius};
   width: 25%;
 `;
 
 const Heading = styled.h1`
-  font-size: ${({ theme }) => theme.fontSize.large};
+  font-size: ${({ theme }) => theme.size.large};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin: 0 0 ${({ theme }) => theme.space.large} 0;
+  margin: 0 0 ${({ theme }) => theme.size.large} 0;
   text-align: center;
 `;
 
@@ -30,16 +30,16 @@ const Form = styled.form`
 const FormGroup = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: ${({ theme }) => theme.space.medium};
+  margin-bottom: ${({ theme }) => theme.size.medium};
 
   &:last-of-type {
-    margin-bottom: ${({ theme }) => theme.space.large};
+    margin-bottom: ${({ theme }) => theme.size.large};
   }
 `;
 
 const Label = styled.label`
-  margin-bottom: ${({ theme }) => theme.space.small};
-  padding-left: ${({ theme }) => theme.space.small};
+  margin-bottom: ${({ theme }) => theme.size.small};
+  padding-left: ${({ theme }) => theme.size.small};
 `;
 
 const Signup = () => {

@@ -15,13 +15,6 @@ declare module "styled-components" {
       warning: string;
       error: string;
     };
-    fontSize: {
-      extraSmall: string;
-      small: string;
-      medium: string;
-      large: string;
-      extraLarge: string;
-    };
     fontWeight: {
       light: number;
       normal: number;
@@ -31,7 +24,7 @@ declare module "styled-components" {
       default: string;
     };
     radius: string;
-    space: {
+    size: {
       extraSmall: string;
       extraSmallSmall: string;
       small: string;
@@ -62,13 +55,6 @@ export default {
     warning: "",
     error: ""
   },
-  fontSize: {
-    extraSmall: "4px",
-    small: "8x",
-    medium: "16px",
-    large: "32px",
-    extraLarge: "64px"
-  },
   fontWeight: {
     light: 200,
     normal: 400,
@@ -78,7 +64,7 @@ export default {
     default: "black"
   },
   radius: "4px",
-  space: {
+  size: {
     extraSmall: "4px",
     extraSmallSmall: "6px",
     small: "8px",

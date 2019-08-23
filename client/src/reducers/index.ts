@@ -1,16 +1,19 @@
 import { combineReducers } from "redux";
 import * as auth from "./auth";
-import * as error from "./error";
+import * as me from "./me";
 import * as post from "./post";
+import * as error from "./error";
 
 export interface State {
   auth: auth.State;
-  error: error.State;
+  me: me.State;
   post: post.State;
+  error: error.State;
 }
 
 export default combineReducers<State>({
   auth: auth.default,
-  error: error.default,
-  post: post.default
+  me: me.default,
+  post: post.default,
+  error: error.default
 });
