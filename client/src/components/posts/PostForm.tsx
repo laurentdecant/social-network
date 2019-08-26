@@ -1,9 +1,9 @@
 import React, { FormEvent, useEffect } from "react";
 import styled from "styled-components";
-import { useActions } from "../hooks";
-import * as postActions from "../actions/post";
-import Button from "./core/Button";
-import Input from "./core/Input";
+import { useActions } from "../../hooks";
+import * as postActions from "../../actions/post";
+import Button from "../core/Button";
+import Input from "../core/Input";
 
 const Form = styled.form`
   background: ${({ theme }) => theme.color.gray};

@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import * as postSelectors from "../selectors/post";
+import * as postSelectors from "../../selectors/post";
 import { useSelector } from "react-redux";
-import Icon from "./core/Icon";
+import Icon from "../core/Icon";
 
 const List = styled.ul``;
 
@@ -31,6 +31,7 @@ const Column = styled.div`
 
 const Author = styled.div`
   margin-bottom: ${({ theme }) => theme.size.small};
+  padding-left: ${({ theme }) => theme.size.small};
 `;
 
 const Message = styled.div`
@@ -46,16 +47,15 @@ const Home = () => {
 
   return (
     <List>
-      {posts &&
-        posts.map(post => (
-          <Item key={post._id}>
-            <StyledIcon type="person" />
-            <Column>
-              <Author>{post.author.username}</Author>
-              <Message>{post.message}</Message>
-            </Column>
-          </Item>
-        ))}
+      {posts.map(post => (
+        <Item key={post._id}>
+          <StyledIcon type="person" />
+          <Column>
+            <Author>{post.author.username}</Author>
+            <Message>{post.message}</Message>
+          </Column>
+        </Item>
+      ))}
     </List>
   );
 };

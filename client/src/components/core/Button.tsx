@@ -1,4 +1,5 @@
 import styled, { ThemedStyledProps, DefaultTheme } from "styled-components";
+import { clickable } from "../../styles/effects";
 import { Dimensionable, height } from "./utils";
 
 const DEFAULT = "default";
@@ -46,24 +47,7 @@ const Button = styled.button<Dimensionable & Colorable>`
     cursor: pointer;
   }
 
-  &::before {
-    background: transparent;
-    content: "";
-    height: 100%;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    transition: background 0.2s;
-  }
-
-  &:hover::before {
-    background: ${({ theme }) => theme.background.hover};
-  }
-
-  &:active::before {
-    background: ${({ theme }) => theme.background.active};
-  }
+  ${clickable}
 `;
 
 export default Button;

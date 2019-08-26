@@ -9,7 +9,7 @@ const Wrapper = styled.div`
   width: 50%;
 `;
 
-const Home = () => {
+const Posts = () => {
   return (
     <Wrapper>
       <PostForm />
@@ -18,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Posts;
