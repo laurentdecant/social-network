@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Dimensionable, height } from "./utils";
 
 const Input = styled.input<Dimensionable>`
-  background: ${({ theme }) => theme.background.default};
+  background: ${({ theme }) => theme.color.background};
   border: 0;
   border-radius: ${({ theme }) => theme.radius};
   height: ${height};

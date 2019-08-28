@@ -11,7 +11,7 @@ import User from "./User";
 const StyledHeader = styled.header`
   align-items: center;
   background: ${({ theme }) => theme.color.primary};
-  color: ${({ theme }) => theme.text.primary};
+  color: ${({ theme }) => theme.color.onPrimary};
   display: flex;
   flex-shrink: 0;
   height: ${({ theme }) => theme.size.extraLarge};
@@ -77,7 +77,7 @@ const Header = () => {
         </Brand>
 
         {links.map(link => (
-          <StyledNavLink to={link.to}>
+          <StyledNavLink key={link.to} to={link.to}>
             {
               //@ts-ignore
               <StyledIcon type={link.icon} />

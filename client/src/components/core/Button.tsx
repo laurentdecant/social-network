@@ -27,9 +27,9 @@ function color({
 }: ThemedStyledProps<Colorable, DefaultTheme>) {
   switch (color) {
     case DEFAULT:
-      return theme.color.default;
+      return theme.color.onBackground;
     case PRIMARY:
-      return theme.background.default;
+      return theme.color.onPrimary;
   }
 }
 

@@ -17,10 +17,10 @@ export const clickable = ({ theme }: Props) => `
   }
 
   &:hover::before {
-    background: ${theme.background.hover};
+    background: ${theme.effect.hover};
   }
 
   &:active::before {
-    background: ${theme.background.active};
+    background: ${theme.effect.active};
   }
 `;

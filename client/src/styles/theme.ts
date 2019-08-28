@@ -2,18 +2,20 @@ import "styled-components";
 
 declare module "styled-components" {
   export interface DefaultTheme {
-    background: {
-      default: string;
-      hover: string;
-      active: string;
-    };
     color: {
-      default: string;
+      background: string;
       primary: string;
+      onBackground: string;
+      onPrimary: string;
       gray: string;
+      darkGray: string;
       success: string;
       warning: string;
       error: string;
+    };
+    effect: {
+      hover: string;
+      active: string;
     };
     fontWeight: {
       light: number;
@@ -35,25 +37,24 @@ declare module "styled-components" {
       largeExtraLarge: string;
       extraLarge: string;
     };
-    text: {
-      primary: string;
-    };
   }
 }
 
 export default {
-  background: {
-    default: "white",
-    hover: "rgba(0, 0, 0, 0.1)",
-    active: "rgba(0, 0, 0, 0.2)"
-  },
   color: {
-    default: "black",
+    background: "#fafafa",
     primary: "#1877f2",
+    onBackground: "#212121",
+    onPrimary: "#fafafa",
     gray: "#e0e0e0",
+    darkGray: "#9e9e9e",
     success: "",
     warning: "",
     error: ""
+  },
+  effect: {
+    hover: "rgba(0, 0, 0, 0.1)",
+    active: "rgba(0, 0, 0, 0.2)"
   },
   fontWeight: {
     light: 200,
@@ -74,8 +75,5 @@ export default {
     large: "32px",
     largeExtraLarge: "48px",
     extraLarge: "64px"
-  },
-  text: {
-    primary: "white"
   }
 };

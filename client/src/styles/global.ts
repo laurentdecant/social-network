@@ -2,7 +2,9 @@ import { createGlobalStyle } from "styled-components";
 import theme from "./theme";
 
 export default createGlobalStyle`
-  * {
+  html {
+    background: ${theme.color.background};
+    color: ${theme.color.onBackground};
     font-size: ${theme.size.medium};
   }
 
