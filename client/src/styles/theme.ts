@@ -53,8 +53,8 @@ export default {
     error: ""
   },
   effect: {
-    hover: "rgba(0, 0, 0, 0.1)",
-    active: "rgba(0, 0, 0, 0.2)"
+    hover: "rgba(255, 255, 255, 0.1)",
+    active: "rgba(255, 255, 255, 0.2)"
   },
   fontWeight: {
     light: 200,

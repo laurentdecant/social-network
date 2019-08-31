@@ -1,6 +1,6 @@
+import { createEpic } from "./utils";
 import { getJson, postJson } from "../fetch";
 import * as actions from "../actions/post";
-import { createEpic } from "./utils";
 
 const getPostsEpic = createEpic(
   actions.getPosts,

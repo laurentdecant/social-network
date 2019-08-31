@@ -1,6 +1,6 @@
 import User from "../types/User";
 import { createReducer } from "./utils";
-import { getMe } from "../actions/me";
+import { getMyselfSuccess } from "../actions/me";
 
 interface State {
   user?: User;
@@ -9,7 +9,7 @@ interface State {
 const initialState: State = {};
 
 const reducer = createReducer(initialState).addHandler(
-  getMe,
+  getMyselfSuccess,
   (state, { payload }) => ({ ...state, user: payload })
 );
 

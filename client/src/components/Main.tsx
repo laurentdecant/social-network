@@ -1,8 +1,8 @@
 import React from "react";
-import { Redirect } from "react-router";
 import styled from "styled-components";
-import Posts from "./posts/Posts";
 import PrivateRoute from "./PrivateRoute";
+import Posts from "./post/Posts";
+import Users from "./user/Users";
 
 const StyledMain = styled.main`
   flex-grow: 1;
@@ -13,6 +13,7 @@ const Main = () => (
   <StyledMain>
     <PrivateRoute path="/" exact component={Posts} />
     <PrivateRoute path="/posts" component={Posts} />
+    <PrivateRoute path="/users" component={Users} />
   </StyledMain>
 );
 

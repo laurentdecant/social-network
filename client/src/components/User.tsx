@@ -1,6 +1,8 @@
 import React from "react";
-import Icon from "./core/Icon";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { getMyself } from "../selectors/me";
+import Icon from "./core/Icon";
 
 const Wrapper = styled.div`
   align-items: center;
@@ -12,10 +14,12 @@ const StyledIcon = styled(Icon)`
 `;
 
 const User = () => {
+  const myself = useSelector(getMyself);
+
   return (
     <Wrapper>
       <StyledIcon type="person" />
-      Laurent
+      {myself && myself.username}
     </Wrapper>
   );
 };

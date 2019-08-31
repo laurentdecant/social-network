@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import * as postSelectors from "../../selectors/post";
 import { useSelector } from "react-redux";
+import { useActions } from "../../hooks";
+import * as postSelectors from "../../selectors/post";
+import * as postActions from "../../actions/post";
 import Icon from "../core/Icon";
+import Create from "./Create";
+
+const Wrapper = styled.div`
+  height: 100%;
+  margin: 0 auto;
+  width: 50%;
+`;
 
 const Item = styled.li`
   background: ${({ theme }) => theme.color.gray};
@@ -60,25 +69,34 @@ const formatDate = (timestamp: string) => {
   return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
 };
 
-const Home = () => {
+const Posts = () => {
+  const getPosts = useActions(postActions.getPosts);
   const posts = useSelector(postSelectors.getPosts);
 
+  useEffect(() => {
+    getPosts();
+  }, []);
+
   return (
-    <ul>
-      {posts.map(post => (
-        <Item key={post._id}>
-          <Row>
-            <Avatar type="person" />
-            <Column>
-              <Author>{post.author.username}</Author>
-              <Timestamp>{formatDate(post.timestamp)}</Timestamp>
-            </Column>
-          </Row>
-          <Message>{post.message}</Message>
-        </Item>
-      ))}
-    </ul>
+    <Wrapper>
+      <Create />
+
+      <ul>
+        {posts.map(post => (
+          <Item key={post._id}>
+            <Row>
+              <Avatar type="person" />
+              <Column>
+                <Author>{post.author.username}</Author>
+                <Timestamp>{formatDate(post.timestamp)}</Timestamp>
+              </Column>
+            </Row>
+            <Message>{post.message}</Message>
+          </Item>
+        ))}
+      </ul>
+    </Wrapper>
   );
 };
 
-export default Home;
+export default Posts;

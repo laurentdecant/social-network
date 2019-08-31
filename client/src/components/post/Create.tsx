@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect } from "react";
+import React, { FormEvent } from "react";
 import styled from "styled-components";
 import { useActions } from "../../hooks";
 import * as postActions from "../../actions/post";
@@ -25,15 +25,8 @@ const StyledButton = styled(Button)`
   border-top-left-radius: 0;
 `;
 
-const PostForm = () => {
-  const [getPosts, postPost] = useActions([
-    postActions.getPosts,
-    postActions.postPost
-  ]);
-
-  useEffect(() => {
-    getPosts();
-  }, []);
+const Create = () => {
+  const postPost = useActions(postActions.postPost);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -51,4 +44,4 @@ const PostForm = () => {
   );
 };
 
-export default PostForm;
+export default Create;

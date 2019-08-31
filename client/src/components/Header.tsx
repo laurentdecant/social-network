@@ -5,7 +5,7 @@ import styled from "styled-components";
 import * as authSelectors from "../selectors/auth";
 import { clickable } from "../styles/effects";
 import Icon from "./core/Icon";
-import Login from "./Login";
+import Login from "./auth/Login";
 import User from "./User";
 
 const StyledHeader = styled.header`

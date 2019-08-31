@@ -64,7 +64,7 @@ const _delete = (model: Model<any>, path: string) => async (
   return await model.findByIdAndDelete(req.params.id).populate(path);
 };
 
-export default (model: Model<any>, path: string) => ({
+export default (model: Model<any>, path: string = "") => ({
   findAll: handle(findAll(model, path)),
   findOne: handle(findOne(model, path)),
   create: handle(create(model, path)),

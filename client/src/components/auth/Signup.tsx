@@ -1,9 +1,9 @@
 import React, { FormEvent } from "react";
 import styled from "styled-components";
-import { useActions } from "../hooks";
-import * as authActions from "../actions/auth";
-import Button from "./core/Button";
-import Input from "./core/Input";
+import { useActions } from "../../hooks";
+import * as authActions from "../../actions/auth";
+import Button from "../core/Button";
+import Input from "../core/Input";
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.color.gray};

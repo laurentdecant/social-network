@@ -1,11 +1,11 @@
 import React, { FormEvent } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { useActions } from "../hooks";
-import * as authActions from "../actions/auth";
-import * as authSelectors from "../selectors/auth";
-import Button from "./core/Button";
-import Input from "./core/Input";
+import { useActions } from "../../hooks";
+import * as authActions from "../../actions/auth";
+import * as authSelectors from "../../selectors/auth";
+import Button from "../core/Button";
+import Input from "../core/Input";
 
 const StyledInput = styled(Input)`
   margin-right: ${({ theme }) => theme.size.medium};

@@ -1,5 +1,5 @@
 import { State } from "../reducers";
 
-const getMe = ({ me }: State) => me.user;
+const getMyself = ({ me }: State) => me.user;
 
-export { getMe };
+export { getMyself };
