@@ -1,6 +1,6 @@
 import { StateObservable } from "redux-observable";
 import { Observable, of, from } from "rxjs";
-import { catchError, filter, map, mergeMap } from "rxjs/operators";
+import { catchError, filter, map, mergeMap, tap } from "rxjs/operators";
 import { Action, ActionCreator, Selector } from "../actions/types";
 import { isActionType } from "../actions/utils";
 import { State } from "../reducers";

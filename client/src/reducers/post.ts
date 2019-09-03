@@ -8,6 +8,6 @@ const initialState: State = [];
 
 const reducer = createReducer(initialState)
   .addHandler(getPostsSuccess, (state, { payload }) => payload)
-  .addHandler(postPostSuccess, (state, { payload }) => [...state, payload]);
+  .addHandler(postPostSuccess, (state, { payload }) => [payload, ...state]);
 
 export { reducer as default, State };

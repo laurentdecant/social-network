@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import User from "../models/userModel";
-import { createToken } from "../utils/auth";
+import { createToken } from "../auth";
 
 async function signUp(req: Request, res: Response, next: NextFunction) {
   const { username, password } = req.body;
@@ -15,7 +15,7 @@ async function signUp(req: Request, res: Response, next: NextFunction) {
     }
 
     user = await User.create({ username, password });
-    const token = await createToken({ userId: user._id });
+    const token = await createToken({ userId: user.id });
     res.send({ token });
   } catch (err) {
     next(err);
@@ -39,7 +39,7 @@ async function logIn(req: Request, res: Response, next: NextFunction) {
       return res.status(401).send();
     }
 
-    const token = await createToken({ userId: user._id });
+    const token = await createToken({ userId: user.id });
     res.send({ token });
   } catch (err) {
     return next(err);

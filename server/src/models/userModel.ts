@@ -14,7 +14,13 @@ var userSchema = new Schema(
       type: String,
       required: true,
       select: false
-    }
+    },
+    followers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: modelNames.User
+      }
+    ]
   },
   { versionKey: false }
 );

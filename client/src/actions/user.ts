@@ -1,5 +1,5 @@
+import User from "../types/User";
 import { createAction } from "./utils";
-import User from "../../../server/src/types/User";
 
 const GET_USERS_REQUEST = "GET_USERS_REQUEST";
 const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";

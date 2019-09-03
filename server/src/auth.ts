@@ -2,8 +2,8 @@ require("dotenv").config();
 
 import { Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import User from "../models/userModel";
-import AuthorizedRequest from "../types/AuthorizedRequest";
+import User from "./models/userModel";
+import AuthorizedRequest from "./types/AuthorizedRequest";
 
 const secretKey = process.env.SECRET_KEY as string;
 

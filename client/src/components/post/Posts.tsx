@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import moment from "moment";
 import { useActions } from "../../hooks";
 import * as postSelectors from "../../selectors/post";
 import * as postActions from "../../actions/post";
-import Icon from "../core/Icon";
 import Create from "./Create";
+import Post from "./Post";
 
 const Wrapper = styled.div`
   height: 100%;
@@ -32,41 +33,26 @@ const Row = styled.div`
   margin-bottom: ${({ theme }) => theme.size.medium};
 `;
 
-const Avatar = styled(Icon)`
-  align-items: center;
-  background: ${({ theme }) => theme.color.darkGray};
-  border-radius: 50%;
-  display: flex;
-  font-size: ${({ theme }) => theme.size.largeExtraLarge};
-  height: ${({ theme }) => theme.size.extraLarge};
-  justify-content: center;
-  margin-right: ${({ theme }) => theme.size.medium};
-  width: ${({ theme }) => theme.size.extraLarge};
-`;
-
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-`;
-
-const Author = styled.div`
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin-bottom: ${({ theme }) => theme.size.small};
-`;
-
-const Timestamp = styled.div`
-  color: ${({ theme }) => theme.color.darkGray};
-`;
-
-const Message = styled.div`
-  font-size: ${({ theme }) => theme.size.mediumLarge};
-  padding: 0 ${({ theme }) => theme.size.small};
-`;
-
 const formatDate = (timestamp: string) => {
-  const date = new Date(timestamp);
-  return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+  const duration = moment.duration(
+    moment(new Date()).diff(moment(new Date(timestamp)))
+  );
+  if (duration.years() < 1) {
+    if (duration.months() < 1) {
+      if (duration.days() < 1) {
+        if (duration.hours() < 1) {
+          if (duration.minutes() < 1) {
+            return `${duration.seconds()}s`;
+          }
+          return `${duration.minutes()}m`;
+        }
+        return `${duration.hours()}h`;
+      }
+      return `${duration.days()}d`;
+    }
+    return `${duration.months()}m`;
+  }
+  return `${duration.years()}y`;
 };
 
 const Posts = () => {
@@ -83,15 +69,8 @@ const Posts = () => {
 
       <ul>
         {posts.map(post => (
-          <Item key={post._id}>
-            <Row>
-              <Avatar type="person" />
-              <Column>
-                <Author>{post.author.username}</Author>
-                <Timestamp>{formatDate(post.timestamp)}</Timestamp>
-              </Column>
-            </Row>
-            <Message>{post.message}</Message>
+          <Item key={post.id}>
+            <Post post={post} />
           </Item>
         ))}
       </ul>

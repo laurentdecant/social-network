@@ -11,7 +11,6 @@ function fetchJson(
   path: string,
   { method, headers, query = {}, body = {} }: Params
 ) {
-  console.log("FETCH_JSON");
   const queryString = Object.keys(query)
     .map(key => `${key}=${encodeURIComponent(query[key])}`)
     .join("&");
@@ -34,7 +33,6 @@ function fetchJson(
 }
 
 function getJson(path: string, query?: any) {
-  console.log("GET_JSON");
   return function(headers: any = {}) {
     return fetchJson(path, {
       method: "GET",

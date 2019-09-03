@@ -1,8 +1,8 @@
 import { Router } from "express";
-import meController from "../controllers/meController";
+import userController from "../controllers/userController";
 
 const router = Router();
 
-router.get("", meController.findOne);
+router.get("", userController.findMyself);
 
 export default router;

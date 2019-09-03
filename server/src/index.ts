@@ -4,7 +4,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import mongoose from "mongoose";
-import { authorize } from "./utils/auth";
+import { authorize } from "./auth";
 import authRouter from "./routers/authRouter";
 import meRouter from "./routers/meRouter";
 import postRouter from "./routers/postRouter";
