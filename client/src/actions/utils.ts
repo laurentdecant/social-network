@@ -1,14 +1,19 @@
 import { Selector, Action, ActionCreator } from "./types";
 
-export function createAction<TPayloadSelector extends Selector>(
+export function createAction<
+  TPayloadSelector extends Selector,
+  TMetaSelector extends Selector
+>(
   type: string,
-  payloadSelector?: TPayloadSelector
-): ActionCreator<TPayloadSelector> {
+  payloadSelector?: TPayloadSelector,
+  metaSelector?: TMetaSelector
+): ActionCreator<TPayloadSelector, TMetaSelector> {
   const actionCreator = (
-    ...args: Parameters<TPayloadSelector>
-  ): Action<ReturnType<TPayloadSelector>> => ({
+    ...args: Parameters<TPayloadSelector> & Parameters<TMetaSelector>
+  ): Action<ReturnType<TPayloadSelector>, ReturnType<TMetaSelector>> => ({
     type,
-    payload: payloadSelector ? payloadSelector(...args) : args[0]
+    payload: payloadSelector ? payloadSelector(...args) : args[0],
+    meta: metaSelector && metaSelector(args[args.length - 1])
   });
   actionCreator.getType = () => type;
   return actionCreator;

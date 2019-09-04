@@ -9,6 +9,7 @@ import authRouter from "./routers/authRouter";
 import meRouter from "./routers/meRouter";
 import postRouter from "./routers/postRouter";
 import userRouter from "./routers/userRouter";
+import followerRouter from "./routers/followerRouter";
 
 const port = process.env.PORT as string;
 const connectionString = process.env.CONNECTION_STRING as string;
@@ -24,6 +25,7 @@ app.use("/api", authorize);
 app.use("/api/me", meRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/users", userRouter);
+app.use("/api/followers", followerRouter);
 
 app.listen(port, () =>
   mongoose

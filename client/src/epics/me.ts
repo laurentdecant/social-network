@@ -6,7 +6,7 @@ const getMyselfEpic = createEpic(
   actions.getMyself,
   actions.getMyselfSuccess,
   actions.getMyselfFailure,
-  () => getJson("api/me")
+  () => getJson("/api/me")
 );
 
 export { getMyselfEpic };

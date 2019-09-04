@@ -2,13 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 import User from "../../types/User";
+import { useActions } from "../../hooks";
+import * as followerActions from "../../actions/follower";
 import Icon from "../core/Icon";
 import Button from "../core/Button";
 
 const Row = styled.div`
   align-items: center;
+  background: ${({ theme }) => theme.color.gray};
+  border-radius: ${({ theme }) => theme.radius};
   display: flex;
-  margin-bottom: ${({ theme }) => theme.size.medium};
+  margin: ${({ theme }) => theme.size.small};
+  padding: ${({ theme }) => theme.size.medium};
 `;
 
 const Avatar = styled(Icon)`
@@ -16,6 +21,7 @@ const Avatar = styled(Icon)`
   background: ${({ theme }) => theme.color.darkGray};
   border-radius: 50%;
   display: flex;
+  flex-shrink: 0;
   font-size: ${({ theme }) => theme.size.largeExtraLarge};
   height: ${({ theme }) => theme.size.extraLarge};
   justify-content: center;
@@ -26,6 +32,7 @@ const Avatar = styled(Icon)`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   margin-right: ${({ theme }) => theme.size.medium};
 `;
 
@@ -47,6 +54,12 @@ interface Props {
 }
 
 const User = ({ user }: Props) => {
+  const followUser = useActions(followerActions.followUser);
+
+  const handleClick = () => {
+    followUser(user.id);
+  };
+
   return (
     <Row>
       <Avatar type="person" />
@@ -54,7 +67,9 @@ const User = ({ user }: Props) => {
         <Username>{user.username}</Username>
         <Timestamp>{format(user.timestamp)}</Timestamp>
       </Column>
-      <Button color="primary">Follow</Button>
+      <Button color="primary" onClick={handleClick}>
+        {user.isFollowed ? "Unfollow" : "Follow"}
+      </Button>
     </Row>
   );
 };

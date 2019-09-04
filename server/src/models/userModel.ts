@@ -15,7 +15,7 @@ var userSchema = new Schema(
       required: true,
       select: false
     },
-    followers: [
+    following: [
       {
         type: Schema.Types.ObjectId,
         ref: modelNames.User

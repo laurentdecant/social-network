@@ -1,20 +1,15 @@
-import { createReducer } from "./utils";
 import { Action } from "../actions/types";
-import { signupFailure, loginFailure } from "../actions/auth";
-import { getPostsFailure } from "../actions/post";
 
 interface State {}
 
 const initialState: State = {};
 
-const log = (state: State, { payload }: Action) => {
-  alert(payload);
+const reducer = (state: State = initialState, action: Action) => {
+  if (action.type.endsWith("_FAILURE")) {
+    alert(action.payload);
+  }
+
   return state;
 };
-
-const reducer = createReducer(initialState)
-  .addHandler(signupFailure, log)
-  .addHandler(loginFailure, log)
-  .addHandler(getPostsFailure, log);
 
 export { reducer as default, State };

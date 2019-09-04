@@ -14,7 +14,7 @@ function fetchJson(
   const queryString = Object.keys(query)
     .map(key => `${key}=${encodeURIComponent(query[key])}`)
     .join("&");
-  return fetch(`${serverUrl}/${path}${queryString && `?${queryString}`}`, {
+  return fetch(`${serverUrl}${path}${queryString && `?${queryString}`}`, {
     ...{
       method,
       headers: {

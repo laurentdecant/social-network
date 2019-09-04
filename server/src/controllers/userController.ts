@@ -3,8 +3,9 @@ import AuthorizedRequest from "../types/AuthorizedRequest";
 import userModel from "../models/userModel";
 import { handle } from "./utils";
 
-const findAll = handle((req: Request, res: Response, next: NextFunction) =>
-  userModel.find().sort("username")
+const findAll = handle(
+  (req: AuthorizedRequest, res: Response, next: NextFunction) =>
+    userModel.find({ _id: { $ne: req.user.id } }).sort("username")
 );
 
 const findOne = handle((req: Request, res: Response, next: NextFunction) =>
@@ -38,7 +39,17 @@ const findMyself = handle(
 );
 
 const pushFollower = handle(
-  (req: Request, res: Response, next: NextFunction) => {}
+  (req: AuthorizedRequest, res: Response, next: NextFunction) =>
+    userModel.findOneAndUpdate(
+      {
+        $and: [
+          { _id: { $eq: req.user.id } },
+          { following: { $ne: req.body.userId } }
+        ]
+      },
+      { $push: { following: req.body.userId } },
+      { new: true }
+    )
 );
 
 export default {

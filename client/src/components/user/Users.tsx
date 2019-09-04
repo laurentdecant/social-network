@@ -7,8 +7,6 @@ import * as userSelectors from "../../selectors/user";
 import User from "./User";
 
 const Wrapper = styled.div`
-  background: ${({ theme }) => theme.color.gray};
-  border-radius: ${({ theme }) => theme.radius};
   height: 100%;
   margin: 0 auto;
   width: 50%;
@@ -17,12 +15,12 @@ const Wrapper = styled.div`
 const List = styled.ul`
   display: flex;
   flex-wrap: wrap;
+  margin: -${({ theme }) => theme.size.small};
 `;
 
 const Item = styled.li`
   box-sizing: border-box;
-  padding: ${({ theme }) => theme.size.medium};
-  width: calc(100% / 3);
+  width: calc(100% / 2);
 `;
 
 const Users = () => {

@@ -7,7 +7,7 @@ const signupEpic = createEpic(
   authActions.signup,
   authActions.signupSuccess,
   authActions.signupFailure,
-  payload => postJson("auth/signup", payload),
+  payload => postJson("/auth/signup", payload),
   meActions.getMyself
 );
 
@@ -15,7 +15,7 @@ const loginEpic = createEpic(
   authActions.login,
   authActions.loginSuccess,
   authActions.loginFailure,
-  payload => postJson("auth/login", payload),
+  payload => postJson("/auth/login", payload),
   meActions.getMyself
 );
 

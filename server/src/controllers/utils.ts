@@ -34,7 +34,7 @@ export const handle = (handler: RequestHandler): RequestHandler => async (
 ) => {
   try {
     const body = await handler(req, res, next);
-    const mapped = map(body);
+    const mapped = body ? map(body) : null;
     res.send(mapped);
   } catch (err) {
     next(err);

@@ -26,7 +26,7 @@ export const createEpic = <TPayloadSelector extends Selector>(
           Authorization: `Bearer ${getToken(state$.value)}`
         })
       ).pipe(
-        map(success),
+        map(value => success(value, action.payload)),
         mergeMap(action => (next ? of(action, next()) : of(action))),
         catchError((err: Error) => of(failure(err)))
       )

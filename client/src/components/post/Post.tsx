@@ -38,7 +38,6 @@ const Timestamp = styled.div`
 `;
 
 const Message = styled.div`
-  font-size: ${({ theme }) => theme.size.mediumLarge};
   padding: 0 ${({ theme }) => theme.size.small};
 `;
 
