@@ -1,3 +1,5 @@
+import qs from "qs";
+
 const serverUrl = process.env.SERVER_URL;
 
 interface Params {
@@ -12,7 +14,12 @@ function fetchJson(
   { method, headers, query = {}, body = {} }: Params
 ) {
   const queryString = Object.keys(query)
-    .map(key => `${key}=${encodeURIComponent(query[key])}`)
+    .map(
+      key =>
+        `${key}=${
+          Array.isArray(query[key]) ? query[key].join(",") : query[key]
+        }`
+    )
     .join("&");
   return fetch(`${serverUrl}${path}${queryString && `?${queryString}`}`, {
     ...{
@@ -52,4 +59,13 @@ function postJson(path: string, body: any) {
   };
 }
 
-export { getJson, postJson };
+function deleteJson(path: string) {
+  return function(headers: any = {}) {
+    return fetchJson(path, {
+      method: "DELETE",
+      headers
+    });
+  };
+}
+
+export { getJson, postJson, deleteJson };

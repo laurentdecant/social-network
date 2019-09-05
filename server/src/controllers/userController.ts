@@ -38,26 +38,11 @@ const findMyself = handle(
     userModel.findById(req.user.id)
 );
 
-const pushFollower = handle(
-  (req: AuthorizedRequest, res: Response, next: NextFunction) =>
-    userModel.findOneAndUpdate(
-      {
-        $and: [
-          { _id: { $eq: req.user.id } },
-          { following: { $ne: req.body.userId } }
-        ]
-      },
-      { $push: { following: req.body.userId } },
-      { new: true }
-    )
-);
-
 export default {
   findAll,
   findOne,
   create,
   update,
   delete: _delete,
-  findMyself,
-  pushFollower
+  findMyself
 };

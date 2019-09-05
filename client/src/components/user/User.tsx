@@ -54,10 +54,17 @@ interface Props {
 }
 
 const User = ({ user }: Props) => {
-  const followUser = useActions(followerActions.followUser);
+  const [followUser, unfollowUser] = useActions([
+    followerActions.followUser,
+    followerActions.unfollowUser
+  ]);
 
   const handleClick = () => {
-    followUser(user.id);
+    if (user.isFollowed) {
+      unfollowUser(user.id);
+    } else {
+      followUser(user.id);
+    }
   };
 
   return (

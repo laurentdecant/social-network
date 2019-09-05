@@ -1,8 +1,13 @@
 import { Router } from "express";
-import userController from "../controllers/userController";
+import followerController from "../controllers/followerController";
 
 const router = Router();
 
-router.post("", userController.pushFollower);
+router
+  .route("")
+  .get(followerController.findMany)
+  .post(followerController.create);
+
+router.route("/:id").delete(followerController.delete);
 
 export default router;

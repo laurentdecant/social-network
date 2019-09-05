@@ -6,14 +6,17 @@ import { isActionType } from "../actions/utils";
 import { State } from "../reducers";
 import { getToken } from "../selectors/auth";
 
-export const createEpic = <TPayloadSelector extends Selector>(
-  request: ActionCreator<TPayloadSelector>,
-  success: ActionCreator,
+export const createEpic = <
+  TRequestSelector extends Selector,
+  TSuccessSelector extends Selector
+>(
+  request: ActionCreator<TRequestSelector>,
+  success: ActionCreator<TSuccessSelector>,
   failure: ActionCreator,
   fetch: (
-    payload: ReturnType<TPayloadSelector>
+    payload: ReturnType<TRequestSelector>
   ) => (headers: any) => Promise<any>,
-  next?: ActionCreator
+  next?: (payload: ReturnType<TSuccessSelector>) => Action
 ) => (
   action$: Observable<Action>,
   state$: StateObservable<State>
@@ -26,8 +29,13 @@ export const createEpic = <TPayloadSelector extends Selector>(
           Authorization: `Bearer ${getToken(state$.value)}`
         })
       ).pipe(
-        map(value => success(value, action.payload)),
-        mergeMap(action => (next ? of(action, next()) : of(action))),
+        map((value: Parameters<TSuccessSelector>) =>
+          //@ts-ignore
+          success(value, action.payload)
+        ),
+        mergeMap(action =>
+          next ? of(action, next(action.payload)) : of(action)
+        ),
         catchError((err: Error) => of(failure(err)))
       )
     )

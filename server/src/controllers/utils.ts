@@ -2,19 +2,21 @@ import { RequestHandler, Request, Response, NextFunction } from "express";
 import { Document } from "mongoose";
 import { ObjectId } from "mongodb";
 
-const map = (param: Document | Document[]): any => {
-  if (Array.isArray(param)) {
-    return param.map(map);
+const map = (value: any): any => {
+  if (Array.isArray(value)) {
+    return value.map(map);
+  } else if (value._id) {
+    const object = value.toObject();
+    return _map(object);
   }
-  const object = param.toObject();
-  return _map(object);
+  return value;
 };
 
-const _map = (object: any): any => {
-  if (Array.isArray(object)) {
-    return object.map(_map);
-  } else if (typeof object === "object") {
-    return Object.entries(object).reduce((prev: any, [key, value]) => {
+const _map = (value: any): any => {
+  if (Array.isArray(value)) {
+    return value.map(_map);
+  } else if (typeof value === "object") {
+    return Object.entries(value).reduce((prev: any, [key, value]) => {
       if (key === "_id") {
         prev.id = value;
         prev.timestamp = new ObjectId(value as string).getTimestamp();
@@ -24,7 +26,7 @@ const _map = (object: any): any => {
       return prev;
     }, {});
   }
-  return object;
+  return value;
 };
 
 export const handle = (handler: RequestHandler): RequestHandler => async (
@@ -34,7 +36,7 @@ export const handle = (handler: RequestHandler): RequestHandler => async (
 ) => {
   try {
     const body = await handler(req, res, next);
-    const mapped = body ? map(body) : null;
+    const mapped = map(body);
     res.send(mapped);
   } catch (err) {
     next(err);
