@@ -20,7 +20,7 @@ const _map = (value: any): any => {
         prev.id = value;
         prev.timestamp = new ObjectId(value as string).getTimestamp();
       } else {
-        prev[key] = value;
+        prev[key] = _map(value);
       }
       return prev;
     }, {});

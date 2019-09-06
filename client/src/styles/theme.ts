@@ -13,11 +13,13 @@ declare module "styled-components" {
       warning: string;
       error: string;
     };
-    effect: {
-      hoverBackground: string;
-      activeBackground: string;
-      hoverPrimary: string;
-      activePrimary: string;
+    hover: {
+      onBackground: string;
+      onPrimary: string;
+    };
+    active: {
+      onBackground: string;
+      onPrimary: string;
     };
     fontWeight: {
       light: number;
@@ -49,16 +51,18 @@ export default {
     onBackground: "#212121",
     onPrimary: "#fafafa",
     gray: "#e0e0e0",
-    darkGray: "#9e9e9e",
+    darkGray: "#757575",
     success: "",
     warning: "",
     error: ""
   },
-  effect: {
-    hoverBackground: "rgba(0, 0, 0, 0.1)",
-    activeBackground: "rgba(0, 0, 0, 0.2)",
-    hoverPrimary: "rgba(255, 255, 255, 0.1)",
-    activePrimary: "rgba(255, 255, 255, 0.2)"
+  hover: {
+    onBackground: "rgba(0, 0, 0, 0.1)",
+    onPrimary: "rgba(255, 255, 255, 0.1)"
+  },
+  active: {
+    onBackground: "rgba(0, 0, 0, 0.2)",
+    onPrimary: "rgba(255, 255, 255, 0.2)"
   },
   fontWeight: {
     light: 200,

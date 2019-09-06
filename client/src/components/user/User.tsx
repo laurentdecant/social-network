@@ -4,8 +4,8 @@ import moment from "moment";
 import User from "../../types/User";
 import { useActions } from "../../hooks";
 import * as followerActions from "../../actions/follower";
-import Icon from "../core/Icon";
 import Button from "../core/Button";
+import Avatar from "../Avatar";
 
 const Row = styled.div`
   align-items: center;
@@ -16,17 +16,8 @@ const Row = styled.div`
   padding: ${({ theme }) => theme.size.medium};
 `;
 
-const Avatar = styled(Icon)`
-  align-items: center;
-  background: ${({ theme }) => theme.color.darkGray};
-  border-radius: 50%;
-  display: flex;
-  flex-shrink: 0;
-  font-size: ${({ theme }) => theme.size.largeExtraLarge};
-  height: ${({ theme }) => theme.size.extraLarge};
-  justify-content: center;
+const StyledAvatar = styled(Avatar)`
   margin-right: ${({ theme }) => theme.size.medium};
-  width: ${({ theme }) => theme.size.extraLarge};
 `;
 
 const Column = styled.div`
@@ -69,7 +60,7 @@ const User = ({ user }: Props) => {
 
   return (
     <Row>
-      <Avatar type="person" />
+      <StyledAvatar {...user} />
       <Column>
         <Username>{user.username}</Username>
         <Timestamp>{format(user.timestamp)}</Timestamp>

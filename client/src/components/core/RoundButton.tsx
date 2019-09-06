@@ -5,16 +5,17 @@ const RoundButton = styled(ButtonBase)`
   border-radius: ${({ theme }) => theme.size.large};
   background: transparent;
   display: flex;
-  height: ${({ theme }) => theme.size.large};
+  height: ${({ theme }) => theme.size.largeExtraLarge};
   justify-content: center;
-  width: ${({ theme }) => theme.size.large};
+  padding: ${({ theme }) => theme.size.small};
+  width: ${({ theme }) => theme.size.largeExtraLarge};
 
   &:hover::before {
-    background: ${({ theme }) => theme.effect.hoverBackground};
+    background: ${({ theme }) => theme.hover.onBackground};
   }
 
   &:active::before {
-    background: ${({ theme }) => theme.effect.activeBackground};
+    background: ${({ theme }) => theme.active.onBackground};
   }
 `;
 

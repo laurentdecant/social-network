@@ -2,15 +2,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { getMyself } from "../selectors/me";
-import Icon from "./core/Icon";
+import Avatar from "./Avatar";
 
 const Wrapper = styled.div`
   align-items: center;
   display: flex;
 `;
 
-const StyledIcon = styled(Icon)`
+const StyledAvatar = styled(Avatar)`
+  height: ${({ theme }) => theme.size.large};
   margin-right: ${({ theme }) => theme.size.small};
+  width: ${({ theme }) => theme.size.large};
 `;
 
 const User = () => {
@@ -18,7 +20,7 @@ const User = () => {
 
   return (
     <Wrapper>
-      <StyledIcon type="person" />
+      {myself && <StyledAvatar {...myself} />}
       {myself && myself.username}
     </Wrapper>
   );

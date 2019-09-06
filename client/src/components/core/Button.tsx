@@ -8,6 +8,14 @@ const Button = styled(ButtonBase)<Dimensionable>`
   color: ${({ theme }) => theme.color.onPrimary};
   height: ${height};
   padding: 0 ${({ theme }) => theme.size.medium};
+
+  &:hover::before {
+    background: ${({ theme }) => theme.hover.onPrimary};
+  }
+
+  &:active::before {
+    background: ${({ theme }) => theme.active.onPrimary};
+  }
 `;
 
 export default Button;

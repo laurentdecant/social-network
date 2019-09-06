@@ -15,12 +15,4 @@ export const clickable = ({ theme }: Props) => `
     width: 100%;
     transition: background 0.2s;
   }
-
-  &:hover::before {
-    background: ${theme.effect.hoverPrimary};
-  }
-
-  &:active::before {
-    background: ${theme.effect.activePrimary};
-  }
 `;

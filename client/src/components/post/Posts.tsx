@@ -19,41 +19,11 @@ const Item = styled.li`
   border-radius: ${({ theme }) => theme.radius};
   display: flex;
   flex-direction: column;
-  padding: ${({ theme }) => theme.size.medium};
 
   &:not(:last-child) {
     margin-bottom: ${({ theme }) => theme.size.medium};
   }
 `;
-
-const Row = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: ${({ theme }) => theme.size.medium};
-`;
-
-const formatDate = (timestamp: string) => {
-  const duration = moment.duration(
-    moment(new Date()).diff(moment(new Date(timestamp)))
-  );
-  if (duration.years() < 1) {
-    if (duration.months() < 1) {
-      if (duration.days() < 1) {
-        if (duration.hours() < 1) {
-          if (duration.minutes() < 1) {
-            return `${duration.seconds()}s`;
-          }
-          return `${duration.minutes()}m`;
-        }
-        return `${duration.hours()}h`;
-      }
-      return `${duration.days()}d`;
-    }
-    return `${duration.months()}m`;
-  }
-  return `${duration.years()}y`;
-};
 
 const Posts = () => {
   const getPosts = useActions(postActions.getPosts);

@@ -46,6 +46,14 @@ const StyledNavLink = styled(NavLink)`
   position: relative;
 
   ${clickable}
+
+  &:hover::before {
+    background: ${({ theme }) => theme.hover.onPrimary};
+  }
+
+  &:active::before {
+    background: ${({ theme }) => theme.active.onPrimary};
+  }
 `;
 
 const StyledIcon = styled(Icon)`

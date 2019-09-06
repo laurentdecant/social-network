@@ -1,13 +1,22 @@
 import styled from "styled-components";
 
+const COMMENT = "comment";
 const GROUP = "group";
 const LIST = "list";
 const PERSON = "person";
 const SEND = "send";
 const SHARE = "share";
+const THUMB_UP = "thumb_up";
 
 interface Props {
-  type: typeof GROUP | typeof LIST | typeof PERSON | typeof SEND | typeof SHARE;
+  type:
+    | typeof COMMENT
+    | typeof GROUP
+    | typeof LIST
+    | typeof PERSON
+    | typeof SEND
+    | typeof SHARE
+    | typeof THUMB_UP;
 }
 
 const Icon = styled.i.attrs(({ type }: Props) => ({

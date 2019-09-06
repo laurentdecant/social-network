@@ -2,12 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import moment from "moment";
 import Post from "../../types/Post";
-import Icon from "../core/Icon";
 import RoundButton from "../core/RoundButton";
+import Icon from "../core/Icon";
+import Avatar from "../Avatar";
 
 const Column = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const Wrapper = styled(Column)`
+  padding: ${({ theme }) => theme.size.medium};
+  padding-bottom: ${({ theme }) => theme.size.small};
 `;
 
 const Row = styled.div`
@@ -15,25 +21,17 @@ const Row = styled.div`
   display: flex;
 `;
 
-const Avatar = styled(Icon)`
-  align-items: center;
-  background: ${({ theme }) => theme.color.darkGray};
-  border-radius: 50%;
-  display: flex;
-  font-size: ${({ theme }) => theme.size.largeExtraLarge};
-  height: ${({ theme }) => theme.size.extraLarge};
-  justify-content: center;
-  margin-right: ${({ theme }) => theme.size.medium};
-  width: ${({ theme }) => theme.size.extraLarge};
+const Header = styled(Row)`
+  margin-bottom: ${({ theme }) => theme.size.medium};
 `;
 
-const Meta = styled(Row)`
-  margin-bottom: ${({ theme }) => theme.size.small};
+const StyledAvatar = styled(Avatar)`
+  margin-right: ${({ theme }) => theme.size.medium};
 `;
 
 const Author = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin-right: ${({ theme }) => theme.size.small};
+  margin-bottom: ${({ theme }) => theme.size.small};
 `;
 
 const Timestamp = styled.div`
@@ -42,10 +40,24 @@ const Timestamp = styled.div`
 
 const Message = styled.div`
   margin-bottom: ${({ theme }) => theme.size.small};
+  padding: 0 ${({ theme }) => theme.size.small};
 `;
 
 const Actions = styled.div`
   display: flex;
+  justify-content: space-evenly;
+`;
+
+const LikeButton = styled(RoundButton).attrs(() => ({
+  children: <Icon type="thumb_up" />
+}))`
+  color: ${({ theme }) => theme.color.darkGray};
+`;
+
+const CommentButton = styled(RoundButton).attrs(() => ({
+  children: <Icon type="comment" />
+}))`
+  color: ${({ theme }) => theme.color.darkGray};
 `;
 
 const format = (timestamp: string) => {
@@ -58,27 +70,22 @@ interface Props {
 
 const Post = ({ post }: Props) => {
   return (
-    <Row>
-      <Avatar type="person" />
-      <Column>
-        <Meta>
+    <Wrapper>
+      <Header>
+        <StyledAvatar {...post.author} />
+        <Column>
           <Author>{post.author.username}</Author>
           <Timestamp>{format(post.timestamp)}</Timestamp>
-        </Meta>
-        <Message>{post.message}</Message>
-        <Actions>
-          <RoundButton>
-            <Icon type="person" />
-          </RoundButton>
-          <RoundButton>
-            <Icon type="person" />
-          </RoundButton>
-          <RoundButton>
-            <Icon type="person" />
-          </RoundButton>
-        </Actions>
-      </Column>
-    </Row>
+        </Column>
+      </Header>
+
+      <Message>{post.message}</Message>
+
+      <Actions>
+        <LikeButton />
+        <CommentButton />
+      </Actions>
+    </Wrapper>
   );
 };
 
