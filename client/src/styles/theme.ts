@@ -14,8 +14,10 @@ declare module "styled-components" {
       error: string;
     };
     effect: {
-      hover: string;
-      active: string;
+      hoverBackground: string;
+      activeBackground: string;
+      hoverPrimary: string;
+      activePrimary: string;
     };
     fontWeight: {
       light: number;
@@ -53,8 +55,10 @@ export default {
     error: ""
   },
   effect: {
-    hover: "rgba(255, 255, 255, 0.1)",
-    active: "rgba(255, 255, 255, 0.2)"
+    hoverBackground: "rgba(0, 0, 0, 0.1)",
+    activeBackground: "rgba(0, 0, 0, 0.2)",
+    hoverPrimary: "rgba(255, 255, 255, 0.1)",
+    activePrimary: "rgba(255, 255, 255, 0.2)"
   },
   fontWeight: {
     light: 200,

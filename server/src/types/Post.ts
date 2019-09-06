@@ -3,7 +3,7 @@ import User from "./User";
 
 interface Post extends Document {
   message: string;
-  author: User;
+  author: string | User;
 }
 
 export default Post;

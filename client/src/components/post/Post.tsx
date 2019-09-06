@@ -3,11 +3,16 @@ import styled from "styled-components";
 import moment from "moment";
 import Post from "../../types/Post";
 import Icon from "../core/Icon";
+import RoundButton from "../core/RoundButton";
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 const Row = styled.div`
   align-items: center;
   display: flex;
-  margin-bottom: ${({ theme }) => theme.size.medium};
 `;
 
 const Avatar = styled(Icon)`
@@ -22,15 +27,13 @@ const Avatar = styled(Icon)`
   width: ${({ theme }) => theme.size.extraLarge};
 `;
 
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+const Meta = styled(Row)`
+  margin-bottom: ${({ theme }) => theme.size.small};
 `;
 
 const Author = styled.div`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin-bottom: ${({ theme }) => theme.size.small};
+  margin-right: ${({ theme }) => theme.size.small};
 `;
 
 const Timestamp = styled.div`
@@ -38,27 +41,15 @@ const Timestamp = styled.div`
 `;
 
 const Message = styled.div`
-  padding: 0 ${({ theme }) => theme.size.small};
+  margin-bottom: ${({ theme }) => theme.size.small};
+`;
+
+const Actions = styled.div`
+  display: flex;
 `;
 
 const format = (timestamp: string) => {
-  const duration = moment.duration(moment().diff(moment(timestamp)));
-  if (duration.years() < 1) {
-    if (duration.months() < 1) {
-      if (duration.days() < 1) {
-        if (duration.hours() < 1) {
-          if (duration.minutes() < 1) {
-            return `${duration.seconds()}s`;
-          }
-          return `${duration.minutes()}m`;
-        }
-        return `${duration.hours()}h`;
-      }
-      return `${duration.days()}d`;
-    }
-    return `${duration.months()}m`;
-  }
-  return `${duration.years()}y`;
+  return moment(timestamp).format("MMM D");
 };
 
 interface Props {
@@ -67,16 +58,27 @@ interface Props {
 
 const Post = ({ post }: Props) => {
   return (
-    <Column>
-      <Row>
-        <Avatar type="person" />
-        <Column>
+    <Row>
+      <Avatar type="person" />
+      <Column>
+        <Meta>
           <Author>{post.author.username}</Author>
           <Timestamp>{format(post.timestamp)}</Timestamp>
-        </Column>
-      </Row>
-      <Message>{post.message}</Message>
-    </Column>
+        </Meta>
+        <Message>{post.message}</Message>
+        <Actions>
+          <RoundButton>
+            <Icon type="person" />
+          </RoundButton>
+          <RoundButton>
+            <Icon type="person" />
+          </RoundButton>
+          <RoundButton>
+            <Icon type="person" />
+          </RoundButton>
+        </Actions>
+      </Column>
+    </Row>
   );
 };
 

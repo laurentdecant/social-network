@@ -4,10 +4,19 @@ import userModel from "../models/userModel";
 import { handle } from "./utils";
 
 const findMany = handle(
-  async ({ query }: AuthorizedRequest, res: Response, next: NextFunction) => {
-    const ids = query.ids.split(",");
-    const users = await userModel.find({ _id: { $in: ids } });
-    return ids.map((id: string) => !!users.find(user => user.id === id));
+  async (req: AuthorizedRequest, res: Response, next: NextFunction) => {
+    if (!req.query.ids) {
+      return;
+    }
+
+    const user = await userModel.findById(req.user.id);
+    if (!user) {
+      return;
+    }
+
+    return req.query.ids
+      .split(",")
+      .map((id: string) => (user.following as string[]).includes(id));
   }
 );
 

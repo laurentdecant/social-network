@@ -1,5 +1,5 @@
 import { createReducer } from "./utils";
-import { signupSuccess, loginSuccess } from "../actions/auth";
+import * as authActions from "../actions/auth";
 
 interface State {
   token?: string;
@@ -8,11 +8,11 @@ interface State {
 const initialState: State = {};
 
 const reducer = createReducer(initialState)
-  .addHandler(signupSuccess, (state, { payload }) => ({
+  .addHandler(authActions.signupSuccess, (state, { payload }) => ({
     ...state,
     token: payload.token
   }))
-  .addHandler(loginSuccess, (state, { payload }) => ({
+  .addHandler(authActions.loginSuccess, (state, { payload }) => ({
     ...state,
     token: payload.token
   }));

@@ -3,11 +3,6 @@ import followerController from "../controllers/followerController";
 
 const router = Router();
 
-router
-  .route("")
-  .get(followerController.findMany)
-  .post(followerController.create);
-
-router.route("/:id").delete(followerController.delete);
+router.get("", followerController.findMany);
 
 export default router;

@@ -11,7 +11,7 @@ import Post from "./Post";
 const Wrapper = styled.div`
   height: 100%;
   margin: 0 auto;
-  width: 50%;
+  width: 25%;
 `;
 
 const Item = styled.li`

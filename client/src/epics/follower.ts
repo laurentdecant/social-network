@@ -6,21 +6,21 @@ const getFollowingEpic = createEpic(
   followerActions.getFollowing,
   followerActions.getFollowingSuccess,
   followerActions.getFollowingFailure,
-  payload => getJson("/api/followers", payload)
+  payload => getJson("/api/me/following", payload)
 );
 
 const followUserEpic = createEpic(
   followerActions.followUser,
   followerActions.followUserSuccess,
   followerActions.followUserFailure,
-  payload => postJson("/api/followers", payload)
+  payload => postJson("/api/me/following", payload)
 );
 
 const unfollowUserEpic = createEpic(
   followerActions.unfollowUser,
   followerActions.unfollowUserSuccess,
   followerActions.unfollowUserFailure,
-  payload => deleteJson(`/api/followers/${payload.userId}`)
+  payload => deleteJson(`/api/me/following/${payload.userId}`)
 );
 
 export { getFollowingEpic, followUserEpic, unfollowUserEpic };

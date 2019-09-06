@@ -1,20 +1,29 @@
 import User from "../types/User";
 import { createReducer } from "./utils";
-import { getUsersSuccess } from "../actions/user";
-import { followUserSuccess, unfollowUserSuccess } from "../actions/follower";
+import * as userActions from "../actions/user";
+import * as followerActions from "../actions/follower";
 
 type State = User[];
 
 const initialState: State = [];
 
 const reducer = createReducer(initialState)
-  .addHandler(getUsersSuccess, (state, action) => action.payload)
-  .addHandler(followUserSuccess, (state, { meta }) => [
+  .addHandler(userActions.getUsersSuccess, (state, action) => action.payload)
+  .addHandler(
+    followerActions.getFollowingSuccess,
+    (state, { payload, meta }) => [
+      ...state.map(user => {
+        const index = meta.findIndex(id => id === user.id);
+        return index > -1 ? { ...user, isFollowed: payload[index] } : user;
+      })
+    ]
+  )
+  .addHandler(followerActions.followUserSuccess, (state, { meta }) => [
     ...state.map(user =>
       user.id === meta.userId ? { ...user, isFollowed: true } : user
     )
   ])
-  .addHandler(unfollowUserSuccess, (state, { meta }) => [
+  .addHandler(followerActions.unfollowUserSuccess, (state, { meta }) => [
     ...state.map(user =>
       user.id === meta.userId ? { ...user, isFollowed: false } : user
     )

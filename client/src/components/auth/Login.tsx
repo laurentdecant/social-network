@@ -4,11 +4,16 @@ import styled from "styled-components";
 import { useActions } from "../../hooks";
 import * as authActions from "../../actions/auth";
 import * as authSelectors from "../../selectors/auth";
-import Button from "../core/Button";
 import Input from "../core/Input";
+import Button from "../core/Button";
 
 const StyledInput = styled(Input)`
   margin-right: ${({ theme }) => theme.size.medium};
+`;
+
+const StyledButton = styled(Button)`
+  background: ${({ theme }) => theme.color.gray};
+  color: ${({ theme }) => theme.color.onBackground};
 `;
 
 const Login = () => {
@@ -27,7 +32,7 @@ const Login = () => {
     <form onSubmit={handleSubmit}>
       <StyledInput type="text" placeholder="Username" />
       <StyledInput type="password" placeholder="Password" />
-      <Button type="submit">Log in</Button>
+      <StyledButton type="submit">Log in</StyledButton>
     </form>
   ) : (
     <></>

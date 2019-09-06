@@ -74,7 +74,7 @@ const User = ({ user }: Props) => {
         <Username>{user.username}</Username>
         <Timestamp>{format(user.timestamp)}</Timestamp>
       </Column>
-      <Button color="primary" onClick={handleClick}>
+      <Button onClick={handleClick}>
         {user.isFollowed ? "Unfollow" : "Follow"}
       </Button>
     </Row>

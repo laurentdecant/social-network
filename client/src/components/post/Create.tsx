@@ -37,9 +37,7 @@ const Create = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <StyledInput placeholder="Message" />
-      <StyledButton color="primary" type="submit">
-        Post
-      </StyledButton>
+      <StyledButton type="submit">Post</StyledButton>
     </Form>
   );
 };

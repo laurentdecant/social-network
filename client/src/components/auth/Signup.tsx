@@ -68,7 +68,7 @@ const Signup = () => {
           <Input type="password" dimension="large" />
         </FormGroup>
 
-        <Button type="submit" dimension="large" color="primary">
+        <Button type="submit" dimension="large">
           Sign up
         </Button>
       </Form>

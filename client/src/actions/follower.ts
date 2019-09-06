@@ -1,4 +1,5 @@
 import { createAction } from "./utils";
+import User from "../types/User";
 
 const GET_FOLLOWING_REQUEST = "GET_FOLLOWING_REQUEST";
 const GET_FOLLOWING_SUCCESS = "GET_FOLLOWING_SUCCESS";
@@ -13,7 +14,11 @@ const UNFOLLOW_USER_FAILURE = "UNFOLLOW_USER_FAILURE";
 const getFollowing = createAction(GET_FOLLOWING_REQUEST, (ids: string[]) => ({
   ids
 }));
-const getFollowingSuccess = createAction(GET_FOLLOWING_SUCCESS);
+const getFollowingSuccess = createAction(
+  GET_FOLLOWING_SUCCESS,
+  (payload: boolean[]) => payload,
+  (meta: { ids: string[] }) => [...meta.ids]
+);
 const getFollowingFailure = createAction(
   GET_FOLLOWING_FAILURE,
   (err: Error) => err
