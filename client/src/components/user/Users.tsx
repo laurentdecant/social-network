@@ -7,9 +7,10 @@ import * as userSelectors from "../../selectors/user";
 import User from "./User";
 
 const Wrapper = styled.div`
+  box-sizing: border-box;
   height: 100%;
   margin: 0 auto;
-  width: 50%;
+  width: 960px;
 `;
 
 const List = styled.ul`

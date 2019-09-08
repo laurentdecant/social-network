@@ -22,6 +22,7 @@ const StyledHeader = styled.header`
 const StyledNav = styled.nav`
   align-items: center;
   display: flex;
+  flex-shrink: 0;
   height: 100%;
 `;
 

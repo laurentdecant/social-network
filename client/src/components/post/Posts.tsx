@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import moment from "moment";
 import { useActions } from "../../hooks";
 import * as postSelectors from "../../selectors/post";
 import * as postActions from "../../actions/post";
@@ -9,9 +8,10 @@ import Create from "./Create";
 import Post from "./Post";
 
 const Wrapper = styled.div`
+  box-sizing: border-box;
   height: 100%;
   margin: 0 auto;
-  width: 25%;
+  width: 480px;
 `;
 
 const Item = styled.li`

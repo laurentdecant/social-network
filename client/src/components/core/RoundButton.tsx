@@ -4,6 +4,7 @@ import ButtonBase from "./ButtonBase";
 const RoundButton = styled(ButtonBase)`
   border-radius: ${({ theme }) => theme.size.large};
   background: transparent;
+  color: ${({ theme }) => theme.color.darkGray};
   display: flex;
   height: ${({ theme }) => theme.size.largeExtraLarge};
   justify-content: center;

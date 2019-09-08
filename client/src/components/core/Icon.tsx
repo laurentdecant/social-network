@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const COMMENT = "comment";
+const DELETE = "delete";
 const GROUP = "group";
 const LIST = "list";
 const PERSON = "person";
@@ -11,6 +12,7 @@ const THUMB_UP = "thumb_up";
 interface Props {
   type:
     | typeof COMMENT
+    | typeof DELETE
     | typeof GROUP
     | typeof LIST
     | typeof PERSON

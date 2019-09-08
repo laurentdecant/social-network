@@ -1,7 +1,11 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import moment from "moment";
 import Post from "../../types/Post";
+import { useActions } from "../../hooks";
+import * as postActions from "../../actions/post";
+import * as meSelector from "../../selectors/me";
 import RoundButton from "../core/RoundButton";
 import Icon from "../core/Icon";
 import Avatar from "../Avatar";
@@ -45,20 +49,24 @@ const Message = styled.div`
 
 const Actions = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+
+  ${RoundButton}:not(:last-child) {
+    margin-right: ${({ theme }) => theme.size.small};
+  }
 `;
 
 const LikeButton = styled(RoundButton).attrs(() => ({
   children: <Icon type="thumb_up" />
-}))`
-  color: ${({ theme }) => theme.color.darkGray};
-`;
+}))``;
 
 const CommentButton = styled(RoundButton).attrs(() => ({
   children: <Icon type="comment" />
-}))`
-  color: ${({ theme }) => theme.color.darkGray};
-`;
+}))``;
+
+const DeleteButton = styled(RoundButton).attrs(() => ({
+  children: <Icon type="delete" />
+}))``;
 
 const format = (timestamp: string) => {
   return moment(timestamp).format("MMM D");
@@ -69,6 +77,13 @@ interface Props {
 }
 
 const Post = ({ post }: Props) => {
+  const deletePost = useActions(postActions.deletePost);
+  const me = useSelector(meSelector.getMyself);
+
+  const handleDeleteClick = () => {
+    deletePost(post.id);
+  };
+
   return (
     <Wrapper>
       <Header>
@@ -82,8 +97,14 @@ const Post = ({ post }: Props) => {
       <Message>{post.message}</Message>
 
       <Actions>
-        <LikeButton />
-        <CommentButton />
+        <Row>
+          <LikeButton />
+          <CommentButton />
+        </Row>
+
+        {me && post.author.id === me.id && (
+          <DeleteButton onClick={handleDeleteClick} />
+        )}
       </Actions>
     </Wrapper>
   );

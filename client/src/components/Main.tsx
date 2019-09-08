@@ -7,7 +7,8 @@ import Users from "./user/Users";
 const StyledMain = styled.main`
   flex-grow: 1;
   padding: ${({ theme }) => theme.size.large} 0;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 const Main = () => (

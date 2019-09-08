@@ -4,9 +4,12 @@ import { createAction } from "./utils";
 const GET_POSTS_REQUEST = "GET_POSTS_REQUEST";
 const GET_POSTS_SUCCESS = "GET_POSTS_SUCCESS";
 const GET_POSTS_FAILURE = "GET_POSTS_FAILURE";
-const POST_POST_REQUEST = "POST_POST_REQUEST";
-const POST_POST_SUCCESS = "POST_POST_SUCCESS";
-const POST_POST_FAILURE = "POST_POST_FAILURE";
+const CREATE_POST_REQUEST = "CREATE_POST_REQUEST";
+const CREATE_POST_SUCCESS = "CREATE_POST_SUCCESS";
+const CREATE_POST_FAILURE = "CREATE_POST_FAILURE";
+const DELETE_POST_REQUEST = "DELETE_POST_REQUEST";
+const DELETE_POST_SUCCESS = "DELETE_POST_SUCCESS";
+const DELETE_POST_FAILURE = "DELETE_POST_FAILURE";
 
 const getPosts = createAction(GET_POSTS_REQUEST);
 const getPostsSuccess = createAction(
@@ -15,17 +18,37 @@ const getPostsSuccess = createAction(
 );
 const getPostsFailure = createAction(GET_POSTS_FAILURE, (err: Error) => err);
 
-const postPost = createAction(POST_POST_REQUEST, (message: string) => ({
+const createPost = createAction(CREATE_POST_REQUEST, (message: string) => ({
   message
 }));
-const postPostSuccess = createAction(POST_POST_SUCCESS, (post: Post) => post);
-const postPostFailure = createAction(POST_POST_FAILURE, (err: Error) => err);
+const createPostSuccess = createAction(
+  CREATE_POST_SUCCESS,
+  (post: Post) => post
+);
+const createPostFailure = createAction(
+  CREATE_POST_FAILURE,
+  (err: Error) => err
+);
+
+const deletePost = createAction(DELETE_POST_REQUEST, (id: string) => ({ id }));
+const deletePostSuccess = createAction(
+  DELETE_POST_SUCCESS,
+  undefined,
+  (meta: { id: string }) => meta
+);
+const deletePostFailure = createAction(
+  DELETE_POST_FAILURE,
+  (err: Error) => err
+);
 
 export {
   getPosts,
   getPostsSuccess,
   getPostsFailure,
-  postPost,
-  postPostSuccess,
-  postPostFailure
+  createPost,
+  createPostSuccess,
+  createPostFailure,
+  deletePost,
+  deletePostSuccess,
+  deletePostFailure
 };

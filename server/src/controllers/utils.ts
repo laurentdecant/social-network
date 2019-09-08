@@ -4,7 +4,7 @@ import { ObjectId } from "mongodb";
 const map = (value: any): any => {
   if (Array.isArray(value)) {
     return value.map(map);
-  } else if (value._id) {
+  } else if (value && value._id) {
     const object = value.toObject();
     return _map(object);
   }

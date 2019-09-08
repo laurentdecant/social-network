@@ -29,8 +29,10 @@ const update = handle((req: Request, res: Response, next: NextFunction) =>
   )
 );
 
-const _delete = handle((req: Request, res: Response, next: NextFunction) =>
-  userModel.findByIdAndDelete(req.params.id)
+const _delete = handle(
+  async (req: Request, res: Response, next: NextFunction) => {
+    await userModel.deleteOne({ _id: req.params.id });
+  }
 );
 
 const findMyself = handle(

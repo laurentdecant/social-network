@@ -26,12 +26,12 @@ const StyledButton = styled(Button)`
 `;
 
 const Create = () => {
-  const postPost = useActions(postActions.postPost);
+  const createPost = useActions(postActions.createPost);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const [message] = (event.target as any) as Array<HTMLInputElement>;
-    postPost(message.value);
+    createPost(message.value);
   };
 
   return (

@@ -1,5 +1,5 @@
 import { createEpic } from "./utils";
-import { getJson, postJson } from "../fetch";
+import { getJson, postJson, deleteJson } from "../fetch";
 import * as postActions from "../actions/post";
 
 const getPostsEpic = createEpic(
@@ -9,11 +9,18 @@ const getPostsEpic = createEpic(
   () => getJson("/api/posts")
 );
 
-const postPostEpic = createEpic(
-  postActions.postPost,
-  postActions.postPostSuccess,
-  postActions.postPostFailure,
+const createPostEpic = createEpic(
+  postActions.createPost,
+  postActions.createPostSuccess,
+  postActions.createPostFailure,
   payload => postJson("/api/posts", payload)
 );
 
-export { getPostsEpic, postPostEpic };
+const deletePostEpic = createEpic(
+  postActions.deletePost,
+  postActions.deletePostSuccess,
+  postActions.deletePostFailure,
+  payload => deleteJson(`/api/posts/${payload.id}`)
+);
+
+export { getPostsEpic, createPostEpic, deletePostEpic };

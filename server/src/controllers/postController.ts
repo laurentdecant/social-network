@@ -3,17 +3,17 @@ import AuthorizedRequest from "../types/AuthorizedRequest";
 import postModel from "../models/postModel";
 import { handle } from "./utils";
 
-const path = "author";
-
-const findAll = handle((req: Request, res: Response, next: NextFunction) =>
-  postModel
-    .find()
-    .sort("-_id")
-    .populate(path)
+const findAll = handle(
+  ({ user }: AuthorizedRequest, res: Response, next: NextFunction) => {
+    return postModel
+      .find({ $or: [{ author: user.id }, { author: { $in: user.following } }] })
+      .sort("-_id")
+      .populate("author");
+  }
 );
 
 const findOne = handle((req: Request, res: Response, next: NextFunction) =>
-  postModel.findById(req.params.id).populate(path)
+  postModel.findById(req.params.id).populate("author")
 );
 
 const create = handle(
@@ -22,7 +22,7 @@ const create = handle(
       ...req.body,
       author: req.user.id
     });
-    await post.populate(path).execPopulate();
+    await post.populate("author").execPopulate();
     return post;
   }
 );
@@ -37,11 +37,22 @@ const update = handle((req: Request, res: Response, next: NextFunction) => {
       },
       { new: true }
     )
-    .populate(path);
+    .populate("author");
 });
 
-const _delete = handle((req: Request, res: Response, next: NextFunction) =>
-  postModel.findByIdAndDelete(req.params.id).populate(path)
+const _delete = handle(
+  async (
+    { params, user }: AuthorizedRequest,
+    res: Response,
+    next: NextFunction
+  ) => {
+    const post = await postModel.findById(params.id);
+    if (post && post.author !== user.id) {
+      res.status(401).send();
+    } else {
+      await postModel.deleteOne({ _id: params.id });
+    }
+  }
 );
 
 export default { findAll, findOne, create, update, delete: _delete };

@@ -7,12 +7,13 @@ import Input from "../core/Input";
 
 const Wrapper = styled.div`
   background: ${({ theme }) => theme.color.gray};
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
   padding: ${({ theme }) => theme.size.large};
   border-radius: ${({ theme }) => theme.radius};
-  width: 25%;
+  width: 480px;
 `;
 
 const Heading = styled.h1`
